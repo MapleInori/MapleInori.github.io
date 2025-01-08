@@ -52,6 +52,14 @@
       </li>
     {%- endif -%}
 
+    {%- if _author.bilibili -%}
+      <li title="{{ _locale_string_follow | replace: '[NAME]', 'bilibili' }}">
+        <a class="button button--circle bilibili-button" itemprop="sameAs" href="https://weibo.com/{{ _author.weibo }}" target="_blank">
+          <div class="icon">{%- include svg/icon/social/bilibili.svg -%}</div>
+        </a>
+      </li>
+    {%- endif -%}
+
     {%- if _author.googleplus -%}
       <li title="{{ _locale_string_follow | replace: '[NAME]', 'Google+' }}">
         <a class="button button--circle googlepluse-button" itemprop="sameAs" href="https://plus.google.com/u/0/{{ _author.googleplus }}" target="_blank">
