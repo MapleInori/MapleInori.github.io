@@ -32,7 +32,7 @@ type: article
       const src = img.getAttribute('src');
       if (src && src.startsWith('image/20')) {
         // 动态拼接GitHub URL，使其在不影响本地图片正常加载的情况下网页也能正常加载图片
-        img.setAttribute('src', 'https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/blob/main/_posts/' + src + '?raw=true');
+        img.setAttribute('src', 'https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts/' + src + '?raw=true');
       }
     });
   });
