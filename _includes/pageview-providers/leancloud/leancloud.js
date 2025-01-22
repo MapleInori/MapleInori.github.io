@@ -13,7 +13,7 @@
     appKey = options.appKey;
     appClass = options.appClass;
     AV.init({
-      serverURLs: 'https://avoscloud.com',
+      serverURLs: 'https://www.leancloud.cn',
       appId: appId,
       appKey: appKey
     });
