@@ -25,5 +25,17 @@ type: article
 </div>
 
 <script>
-  {%- include scripts/article.js -%}
+  // 确保页面加载完成后执行
+  document.addEventListener("DOMContentLoaded", function() {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      const src = img.getAttribute('src');
+      if (src && src.startsWith('image/')) {
+        // 动态拼接GitHub URL
+        img.setAttribute('src', 'https://github.com/MapleInori/MapleInori.github.io/blob/main/' + src + '?raw=true');
+      }
+    });
+  });
 </script>
+
+{%- include scripts/article.js -%}
