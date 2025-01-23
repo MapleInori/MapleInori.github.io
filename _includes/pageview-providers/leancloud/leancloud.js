@@ -13,7 +13,7 @@
     appKey = options.appKey;
     appClass = options.appClass;
     AV.init({
-      serverURLs: 'https://www.leancloud.cn',
+      serverURLs: 'https://avoscloud.com',
       appId: appId,
       appKey: appKey
     });
@@ -23,6 +23,10 @@
     };
 
     function searchKey(key) {
+      if (!key) {
+        console.error('Invalid key provided:', key);
+        return Promise.reject('Invalid key');
+      }
       var query = new AV.Query(appClass);
       query.equalTo('key', key);
       return query.first();
@@ -46,10 +50,18 @@
 
     function get(key, callback) {
       searchKey(key).then(function(result) {
+        console.log(result);  // 打印查询结果
         if (result) {
           callback && callback(result.attributes.views);
+        } else {
+          insert(key, title).then(function(result) {
+            increment(result).then(function(result) {
+              callback && callback(result.attributes.views);
+            });
+          }, errorHandler);
         }
       }, errorHandler);
+      
     }
 
     function increase(key, title, callback) {
