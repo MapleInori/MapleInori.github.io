@@ -50,7 +50,7 @@
 
     function get(key, callback) {
       searchKey(key).then(function(result) {
-        console.log(result);  // 打印查询结果
+        // console.log(result);  // 打印查询结果
         if (result) {
           callback && callback(result.attributes.views);
         } else {
