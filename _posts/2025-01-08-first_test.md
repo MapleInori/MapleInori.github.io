@@ -2,6 +2,7 @@
 layout: article
 title: 这是第一次测试
 tag: test
+key: 2
 ---
 ## Hello,World
 

@@ -2,6 +2,7 @@
 layout: article
 title: NapCat使用
 tag: QQbot
+key: 4
 ---
 ## 前置
 
@@ -16,8 +17,7 @@ tag: QQbot
 2. 确保QQ版本安装且最新
 3. 双击目录下launcher.bat即可启动 如果是win10 则使用launcher-win10.bat
 
-    如果需要快速登录 将 QQ 号传入参数即可，launcher.bat 123456
-
+   如果需要快速登录 将 QQ 号传入参数即可，launcher.bat 123456
 
 ## 通过 WebUI 配置OneBot服务
 
@@ -57,7 +57,6 @@ python -m pipx ensurepath
 pipx install nb-cli
 
 安装完成后，你可以在命令行使用 `nb` 命令来使用脚手架。如果出现无法找到命令的情况（例如出现“Command not found”字样），请参考 [pipx 文档](https://pypa.github.io/pipx/) 检查你的环境变量。
-
 
 ## 创建项目
 
@@ -110,8 +109,6 @@ nb run
 
 你现在应该已经运行起来了你的第一个 NoneBot 项目了！请注意，生成的项目中使用了 `FastAPI` 驱动器和 `Console` 适配器，你之后可以自行修改配置或安装其他适配器。
 
-
 通过nb create创建的项目不包含.env文件和bot.py。如果需要，手动创建。
-
 
 接下来怎么写插件捏？
