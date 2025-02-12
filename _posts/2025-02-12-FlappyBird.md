@@ -729,7 +729,7 @@ public class InitSceenSize : MonoBehaviour
         top = buttonWorldPosition.y + buttonSize.y / 2;
         bottom = buttonWorldPosition.y - buttonSize.y / 2;
 
-        Debug.Log(pauseButtonRectTransform.position.y + "+" + pauseButtonRectTransform.rect.size.y / 2 + "=" + top);
+        //Debug.Log(pauseButtonRectTransform.position.y + "+" + pauseButtonRectTransform.rect.size.y / 2 + "=" + top);
     }
 
     public static bool ClickPause(Vector3 position)
