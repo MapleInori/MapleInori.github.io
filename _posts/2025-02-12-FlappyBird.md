@@ -2,7 +2,7 @@
 layout: article
 title: Flappy bird 学习记录
 tag: Unity
-key:
+key: 20250212
 ---
 ## 概述
 
@@ -307,7 +307,7 @@ public class BirdController : MonoBehaviour
                 // 如果点击位置不在暂停按钮区域内，触发跳跃
                 Jump();
             }
-        
+      
             //if (GameStateManager.Instance.isPlaying) Jump();
         }
         Velocity.y += Gravity * Time.deltaTime; // 受重力影响更新垂直速度
