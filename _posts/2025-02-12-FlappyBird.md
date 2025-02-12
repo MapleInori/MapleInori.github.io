@@ -2,7 +2,7 @@
 layout: article
 title: Flappy bird 学习记录
 tag: Unity
-key: 
+key:
 ---
 ## 概述
 
@@ -218,7 +218,9 @@ public class GameStateManager
 
 ## 游戏的控制
 
-由于有一个暂停按钮在游戏中，当点击暂停按钮时同样会触发一次跳跃，所以对点击的位置进行判断。
+游戏中的小鸟在不同的游戏状态下（如待机、游戏中、游戏结束等）有不同的表现。首先，在待机状态下，小鸟会在垂直方向上下浮动，模拟出类似摆动的效果。进入游戏后，小鸟会受到自定义重力的影响，触发用户输入（点击屏幕或鼠标点击）时会让小鸟跳跃，同时通过物理模拟调整小鸟的速度和旋转角度。在游戏结束后，角色会根据情况处理碰撞，判断是否与地面、管道等物体发生接触并做出相应的状态更新。
+
+并且由于有一个暂停按钮在游戏中，当点击暂停按钮时同样会触发一次跳跃，所以对点击的位置进行判断。
 
 ```csharp
 using System;
@@ -231,29 +233,29 @@ using DG.Tweening;
 public class BirdController : MonoBehaviour
 {
     [Range(1, 10)]
-    public float R = 5f;
+    public float R = 5f; // 控制小鸟上下浮动的速度
     [Range(0, 1)]
-    public float IdleHeight = 0.5f;
+    public float IdleHeight = 0.5f; // 小鸟在待机状态时的浮动高度
 
-    private float Radian = 0;
-    private Vector3 orgPosition;
+    private float Radian = 0; // 当前浮动的角度（弧度）
+    private Vector3 orgPosition; // 初始位置
 
-    public float Gravity = -9.81f;
-    public float JumpHeight = 1.3f;
-    public Vector3 Velocity = Vector3.zero;
+    public float Gravity = -9.81f; // 重力加速度
+    public float JumpHeight = 1.3f; // 跳跃高度
+    public Vector3 Velocity = Vector3.zero; // 当前速度
 
-    public float MaxVelocity = -15f;
+    public float MaxVelocity = -15f; // 最大下落速度
 
-    private float RotationZ = 0;
-    public float RotateSpeed = 8; // 弧度
-    private float JumpVelocity;
+    private float RotationZ = 0; // 小鸟的旋转角度
+    public float RotateSpeed = 8; // 旋转速度（弧度）
+    private float JumpVelocity; // 跳跃的初始速度
 
-    private Collider2D preCollieder;
+    private Collider2D preCollieder; // 上次碰撞的物体
 
     void Start()
     {
-        orgPosition = transform.position;
-        preCollieder = null;
+        orgPosition = transform.position; // 记录小鸟的初始位置
+        preCollieder = null; // 初始化碰撞器
     }
 
     // Update is called once per frame
@@ -275,13 +277,15 @@ public class BirdController : MonoBehaviour
 
     }
 
+    // 控制小鸟在待机状态时的上下浮动
     private void Idle()
     {
-        Radian += R * Time.deltaTime;
-        var height = Mathf.Sin(Radian) * IdleHeight;
-        transform.position = orgPosition + new Vector3(0, height, 0);
+        Radian += R * Time.deltaTime; 
+        var height = Mathf.Sin(Radian) * IdleHeight; // 根据角度计算当前浮动高度
+        transform.position = orgPosition + new Vector3(0, height, 0); 
     }
 
+    // 控制小鸟的重力和跳跃
     private void CustomGravity()
     {
         if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0) )
@@ -303,18 +307,19 @@ public class BirdController : MonoBehaviour
                 // 如果点击位置不在暂停按钮区域内，触发跳跃
                 Jump();
             }
-  
+        
             //if (GameStateManager.Instance.isPlaying) Jump();
         }
-        Velocity.y += Gravity * Time.deltaTime;
-        if (Velocity.y < MaxVelocity) Velocity.y = MaxVelocity;
-        transform.position += Velocity * Time.deltaTime;
+        Velocity.y += Gravity * Time.deltaTime; // 受重力影响更新垂直速度
+        if (Velocity.y < MaxVelocity) Velocity.y = MaxVelocity; // 限制最大下落速度
+        transform.position += Velocity * Time.deltaTime; // 更新小鸟的位置
 
+        // 控制小鸟的旋转角度，使其根据下落速度旋转
         if (Velocity.y < -JumpVelocity * 0.1f)
         {
             RotationZ -= RotateSpeed * Time.deltaTime * 1000 * Mathf.Deg2Rad; // 放大1000倍才显得正常，帧率太高导致deltaTime过低？
 
-            RotationZ = Mathf.Max(-90, RotationZ);
+            RotationZ = Mathf.Max(-90, RotationZ);// 限制旋转角度不超过-90°
         }
 
         transform.eulerAngles = new Vector3(0, 0, RotationZ);
@@ -325,8 +330,11 @@ public class BirdController : MonoBehaviour
     // 如果东西多的话，鸟要接触的东西太多了，集中在这里看起来也许不如分散到各自身上处理
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Debug.Log(collision.tag);
+
         if(collision.CompareTag("ground") || collision.CompareTag("pipe"))
         {
+            //GameStateManager.Instance.Finish();
             GameStateManager.Instance.SetState(GameState.Finished);
         }
         if (collision.CompareTag("sky"))
@@ -353,26 +361,28 @@ public class BirdController : MonoBehaviour
 
     private void HandleBirdDie()
     {
-        float distance = -Camera.main.orthographicSize + 1.28f + 0.64f * 0.5f;
+        float distance = -Camera.main.orthographicSize + 1.28f + 0.64f * 0.5f; // 通过手动计算得到的地面高度
         if(transform.position.y > distance)
         {
             CustomGravity();
         }
     }
 
+    // 重启游戏时重置小鸟的位置和状态
     public void Restart()
     {
-        transform.position = orgPosition;
-        transform.eulerAngles = Vector3.zero;
-        RotationZ = 0;
-        Velocity = Vector3.zero;
+        transform.position = orgPosition; // 恢复初始位置
+        transform.eulerAngles = Vector3.zero; // 恢复旋转角度
+        RotationZ = 0; // 恢复旋转值
+        Velocity = Vector3.zero; // 恢复速度
     }
 
+    // 使小鸟跳跃
     public void Jump()
     {
-        Velocity.y = MathF.Sqrt(JumpHeight * -2 * Gravity);
-        JumpVelocity = Velocity.y;
-        RotationZ = 30;
+        Velocity.y = MathF.Sqrt(JumpHeight * -2 * Gravity); // 计算跳跃的初始速度
+        JumpVelocity = Velocity.y; // 记录跳跃速度
+        RotationZ = 30; // 跳跃时调整旋转角度
     }
 }
 
@@ -410,7 +420,7 @@ public class PipeCreate : MonoBehaviour
         CameraHalfWidth = Screen.width * 1f / Screen.height * Camera.main.orthographicSize;
         //Debug.Log(CameraHalfWidth);
         pipeList = new List<GameObject>();
-    
+  
         // 也能通过协程的方式不断生成
         for(int i =0; i< 5;i++)
         {
