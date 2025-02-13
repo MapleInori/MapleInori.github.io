@@ -307,7 +307,7 @@ public class BirdController : MonoBehaviour
                 // 如果点击位置不在暂停按钮区域内，触发跳跃
                 Jump();
             }
-      
+    
             //if (GameStateManager.Instance.isPlaying) Jump();
         }
         Velocity.y += Gravity * Time.deltaTime; // 受重力影响更新垂直速度
@@ -679,7 +679,7 @@ public class MainPanel : MonoBehaviour
 
 ![1739349734048](image/2025-02-12-FlappyBird/1739349734048.png)
 
-然后由于Start的先后顺序不一。忘了使用Invoke了，不过问题不大，毕竟Invoke虽然在Start之前调用，但是不同脚本之间，Invoke是否真的能在Start之前我就不确定了。
+然后由于Start的先后顺序不一。忘了使用Awake了，不过问题不大，毕竟Awake虽然在Start之前调用，但是不同脚本之间，Awake是否真的能在Start之前我就不确定了。
 
 所以一开始在InitScreenSize.cs中修改屏幕大小，然后在BirdControoller计算暂停按钮的位置，但是由于脚本先后顺序原因，画面虽然调整了，但是Bird中获取到的暂停按钮的坐标是一开始调整之前的坐标，导致点击暂停按钮的计算出现错误，又不希望每次点击都反复计算暂停按钮所在的边框，所以将暂停按钮的坐标计算放在了InitScreenSize脚本中。
 
