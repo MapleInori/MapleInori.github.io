@@ -307,7 +307,7 @@ public class BirdController : MonoBehaviour
                 // 如果点击位置不在暂停按钮区域内，触发跳跃
                 Jump();
             }
-    
+  
             //if (GameStateManager.Instance.isPlaying) Jump();
         }
         Velocity.y += Gravity * Time.deltaTime; // 受重力影响更新垂直速度
@@ -748,7 +748,7 @@ public class InitSceenSize : MonoBehaviour
 
 [【Unity游戏开发：Flappy Bird (01)】](https://www.bilibili.com/video/BV1Dy4y1T7sf/)
 
-[这是全B站最还原的2025-02-12-FlappyBird飞翔的小鸟！2025-02-12-FlappyBird开发教学合集！](https://www.bilibili.com/video/BV1jK411V7V7/)
+[这是全B站最还原的FlappyBird飞翔的小鸟！FlappyBird开发教学合集！](https://www.bilibili.com/video/BV1jK411V7V7/)
 
 ## 素材资源
 
