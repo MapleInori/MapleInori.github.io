@@ -760,7 +760,7 @@ https://pan.baidu.com/s/1Mo8wZoTr9jjelMK-28b1Cw
 
 ## 仓库链接
 
-[MapleInori/2025-02-12-FlappyBird (github.com)](https://github.com/MapleInori/2025-02-12-FlappyBird)
+[MapleInori/FlappyBird (github.com)](https://github.com/MapleInori/FlappyBird)
 
 ## 闲话
 
