@@ -6,7 +6,7 @@ key: 2
 aside:
   toc: true
 sidebar:
-  nav: layouts
+  nav: docs-test
 ---
 ## Hello,World
 

@@ -50,3 +50,14 @@ header:
       tr      : &TR       Hakkında
       # @end locale config
     url: /about.html
+docs-test:
+  - title:      Start
+    children:
+      - title:  First_Test
+        url:    2025/01/08/first_test.html
+      - title:  None
+  - title:      中文
+    children:
+      - title:  修改
+        url:    2025/01/08/Blog修改.html
+      - title:  空
