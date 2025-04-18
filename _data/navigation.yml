@@ -60,4 +60,7 @@ docs-test:
     children:
       - title:  修改
         url:    2025/01/08/Blog修改.html
-      - title:  空
+      - title:  三级子级测试
+        children:
+          - title:  空
+
