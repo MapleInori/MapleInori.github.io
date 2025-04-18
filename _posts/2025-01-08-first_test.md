@@ -3,6 +3,10 @@ layout: article
 title: 这是第一次测试
 tag: test
 key: 2
+aside:
+  toc: true
+sidebar:
+  nav: layouts
 ---
 ## Hello,World
 
