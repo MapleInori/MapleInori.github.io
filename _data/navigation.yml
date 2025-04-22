@@ -63,10 +63,11 @@ docs-test:
       - title:  三级子级测试，下一级无法显示
         children:
           - title:  空
+
 docs-UGUI:
-  - title: 概述
+  - title:     概述
     children: 
-      - title: Unity UI: Unity User Interface
+      - title: Unity UI Unity User Interface
         url:   2000-01-01-Unity User Interface.html
       - title: Canvas
         url: 
@@ -82,7 +83,7 @@ docs-UGUI:
         url: 
       - title: Rich Text
         url: 
-  - title: Events
+  - title:     Events
     children: 
       - title: Messaging System
         url: 
@@ -92,7 +93,7 @@ docs-UGUI:
         url: 
       - title: Raycasters
         url: 
-  - title: Reference
+  - title:     Reference
     children: 
       - title: Rect Transform
         url: 
@@ -106,7 +107,7 @@ docs-UGUI:
         url: 
       - title: Events
         url: 
-  - title: UI How Tos
+  - title:     UI How Tos
     children:
       - title: Designing UI for Multiple Resolutions
         url: 
