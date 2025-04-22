@@ -2,7 +2,7 @@
 layout: article
 title: Unity User Interface
 tags: ["Unity", "UGUI"]
-key: 20250327
+key: UnityUserInterface
 permalink: docs/UGUI/UnityUserInterface
 aside:
   toc: true
