@@ -54,12 +54,12 @@ docs-test:
   - title:      Start
     children:
       - title:  First_Test
-        url:    _posts/2025/01/08/first_test.html
+        url:    2025/01/08/first_test.html
       - title:  None
   - title:      中文
     children:
       - title:  修改
-        url:    _posts/2025/01/08/Blog修改.html
+        url:    2025/01/08/Blog修改.html
       - title:  三级子级测试，下一级无法显示
         children:
           - title:  空
