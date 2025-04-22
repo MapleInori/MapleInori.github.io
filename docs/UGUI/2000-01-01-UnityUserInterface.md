@@ -3,7 +3,7 @@ layout: article
 title: Unity User Interface
 tags: ["Unity", "UGUI"]
 key: 20250327
-permalink: docs/UGUI/Unity User Interface
+permalink: docs/UGUI/UnityUserInterface
 aside:
   toc: true
 sidebar:
