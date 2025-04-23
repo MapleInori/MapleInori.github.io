@@ -24,7 +24,7 @@ type: article
 
 </div>
 
-<script>
+<!-- <script>
   // 确保页面加载完成后执行
   document.addEventListener("DOMContentLoaded", function() {
     const images = document.querySelectorAll('img');
@@ -33,6 +33,23 @@ type: article
       if (src && src.startsWith('image/20')) {
         // 动态拼接GitHub URL，使其在不影响本地图片正常加载的情况下网页也能正常加载图片
         img.setAttribute('src', 'https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts/' + src + '?raw=true');
+      }
+    });
+  });
+  {%- include scripts/article.js -%}
+</script> -->
+<script>
+  // 确保页面加载完成后执行
+  document.addEventListener("DOMContentLoaded", function() {
+    const images = document.querySelectorAll('img');
+    const currentPath = window.location.pathname; // 获取当前文章的路径
+    const basePath = currentPath.substring(0, currentPath.lastIndexOf('/')); // 获取文章所在目录
+
+    images.forEach(img => {
+      const src = img.getAttribute('src');
+      if (src && src.startsWith('image/')) {
+        // 动态拼接路径，使图片路径适配文章所在目录
+        img.setAttribute('src', `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io${basePath}/${src}?raw=true`);
       }
     });
   });
