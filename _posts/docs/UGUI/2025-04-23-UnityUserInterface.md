@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Unity User Interface
+title: UGUI-Unity User Interface
 tags: ["Unity", "UGUI"]
 key: UnityUserInterface
 permalink: docs/UGUI/UnityUserInterface

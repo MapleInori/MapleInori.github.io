@@ -93,59 +93,59 @@ docs-test:
         children:
           - title:  空
 
-docs-UGUI:
+
+docs-UGUI:     # UGUI的文档导航栏
   - title:     概述
     children: 
       - title: Unity UI Unity User Interface
         url:   docs/UGUI/UnityUserInterface
       - title: Canvas
-        url: 
+        url:   docs/UGUI/Canvas
       - title: Basic Layout
-        url: 
+        url:   docs/UGUI/BasicLayout
       - title: Visual Components
-        url: 
+        url:   docs/UGUI/VisualComponents
       - title: Interaction Components
-        url: 
+        url:   docs/UGUI/InteractionComponents
       - title: Animation Integration
-        url: 
+        url:   docs/UGUI/AnimationIntegration
       - title: Auto Layout
-        url: 
+        url:   docs/UGUI/AutoLayout
       - title: Rich Text
-        url: 
+        url:   docs/UGUI/RichText
   - title:     Events
     children: 
       - title: Messaging System
-        url: 
+        url:   docs/UGUI/MessagingSystem
       - title: Input Modules
-        url: 
+        url:   docs/UGUI/InputModules
       - title: Supported Events
-        url: 
+        url:   docs/UGUI/SupportedEvents
       - title: Raycasters
-        url: 
+        url:   docs/UGUI/Raycasters
   - title:     Reference
     children: 
       - title: Rect Transform
-        url: 
+        url:   docs/UGUI/RectTransform
       - title: Canvas Components
-        url: 
+        url:   docs/UGUI/CanvasComponents
       - title: Visual UI Interaction Components
-        url: 
+        url:   docs/UGUI/VisualUIInteractionComponents
       - title: Interaction Components
-        url: 
+        url:   docs/UGUI/InteractionComponents
       - title: Auto Layout
-        url: 
+        url:   docs/UGUI/AutoLayout
       - title: Events
-        url: 
+        url:   docs/UGUI/Events
   - title:     UI How Tos
     children:
       - title: Designing UI for Multiple Resolutions
-        url: 
+        url:   docs/UGUI/DesigningUIForMultipleResolutions
       - title: Making UI elements fit the size of their content
-        url: 
+        url:   docs/UGUI/MakingUIElementsFitTheSizeOfTheirContent
       - title: Creating a World Space UI
-        url: 
+        url:   docs/UGUI/CreatingAWorldSpaceUI
       - title: Creating UI elements from scripting
-        url: 
+        url:   docs/UGUI/CreatingUIElementsFromScripting
       - title: Creating Screen Transitions
-        url: 
-
+        url:   docs/UGUI/CreatingScreenTransitions
