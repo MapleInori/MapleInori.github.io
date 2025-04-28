@@ -1,9 +1,9 @@
 ---
 layout: article
-title: UGUI-Auto Layout
+title: UGUI-Reference-Auto Layout
 tags: ["Unity", "UGUI"]
-key: AutoLayout
-permalink: docs/UGUI/AutoLayout
+key: Reference-AutoLayout
+permalink: docs/UGUI/Reference/AutoLayout
 aside:
   toc: true
 sidebar:

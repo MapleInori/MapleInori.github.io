@@ -4,11 +4,10 @@ title: UGUI-Visual Components
 tags: ["Unity", "UGUI"]
 key: VisualComponents
 permalink: docs/UGUI/VisualComponents
-aside:
+aside: 
   toc: true
 sidebar:
   nav: docs-UGUI
-
 ---
 # Visual Components（可视组件）
 

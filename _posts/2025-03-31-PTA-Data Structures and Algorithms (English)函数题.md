@@ -1335,7 +1335,188 @@ void MySort(ElementType A[], int N) {
 
 ### 6-10 Strongly Connected Components
 
+Write a program to find the strongly connected components in a digraph.
+
+**Format of functions:**
+
+```c++
+void StronglyConnectedComponents( Graph G, void (*visit)(Vertex V) );
+```
+
+where `Graph` is defined as the following:
+
+```c++
+typedef struct VNode *PtrToVNode;
+struct VNode {
+    Vertex Vert;
+    PtrToVNode Next;
+};
+typedef struct GNode *Graph;
+struct GNode {
+    int NumOfVertices;
+    int NumOfEdges;
+    PtrToVNode *Array;
+};
+```
+
+Here `void (*visit)(Vertex V)` is a function parameter that is passed into `StronglyConnectedComponents` to handle (print with a certain format) each vertex that is visited.  The function `StronglyConnectedComponents` is supposed to print a return after each component is found.
+
+**Sample program of judge:**
+
+```c++
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MaxVertices 10  /* maximum number of vertices */
+typedef int Vertex;     /* vertices are numbered from 0 to MaxVertices-1 */
+typedef struct VNode *PtrToVNode;
+struct VNode {
+    Vertex Vert;
+    PtrToVNode Next;
+};
+typedef struct GNode *Graph;
+struct GNode {
+    int NumOfVertices;
+    int NumOfEdges;
+    PtrToVNode *Array;
+};
+
+Graph ReadG(); /* details omitted */
+
+void PrintV( Vertex V )
+{
+   printf("%d ", V);
+}
+
+void StronglyConnectedComponents( Graph G, void (*visit)(Vertex V) );
+
+int main()
+{
+    Graph G = ReadG();
+    StronglyConnectedComponents( G, PrintV );
+    return 0;
+}
+
+/* Your function will be put here */
+```
+
+**Sample Input (for the graph shown in the figure):**
+
+![](https://images.ptausercontent.com/39)
+
+```in
+4 5
+0 1
+1 2
+2 0
+3 1
+3 2
+
+```
+
+**Sample Output:**
+
+```out
+3 
+1 2 0 
+
+```
+
+Note: The output order does not matter.  That is, a solution like
+
+```
+0 1 2 
+3 
+```
+
+is also considered correct.
+
 #### 参考答案
+
+```c
+static void DFS(Vertex u, Graph G, int *visited, Vertex *stack, int *top) {
+    visited[u] = 1;
+    PtrToVNode node = G->Array[u];
+    while (node != NULL) {
+        Vertex v = node->Vert;
+        if (!visited[v]) {
+            DFS(v, G, visited, stack, top);
+        }
+        node = node->Next;
+    }
+    stack[++(*top)] = u;
+}
+
+static void DFS2(Graph G, Vertex u, int *visited, void (*visit)(Vertex)) {
+    visited[u] = 1;
+    visit(u);
+    PtrToVNode node = G->Array[u];
+    while (node != NULL) {
+        Vertex v = node->Vert;
+        if (!visited[v]) {
+            DFS2(G, v, visited, visit);
+        }
+        node = node->Next;
+    }
+}
+
+void StronglyConnectedComponents(Graph G, void (*visit)(Vertex V)) {
+    Vertex stack[MaxVertices];
+    int top = -1;
+    int visited[MaxVertices] = {0};
+
+    // 第一次DFS遍历原图，得到逆后序栈
+    for (int u = 0; u < G->NumOfVertices; u++) {
+        if (!visited[u]) {
+            DFS(u, G, visited, stack, &top);
+        }
+    }
+
+    // 构造转置图
+    Graph transposeG = (Graph)malloc(sizeof(struct GNode));
+    transposeG->NumOfVertices = G->NumOfVertices;
+    transposeG->NumOfEdges = G->NumOfEdges;
+    transposeG->Array = (PtrToVNode *)malloc(transposeG->NumOfVertices * sizeof(PtrToVNode));
+
+    for (int i = 0; i < transposeG->NumOfVertices; i++) {
+        transposeG->Array[i] = NULL;
+    }
+
+    for (int u = 0; u < G->NumOfVertices; u++) {
+        PtrToVNode node = G->Array[u];
+        while (node != NULL) {
+            Vertex v = node->Vert;
+            PtrToVNode newNode = (PtrToVNode)malloc(sizeof(struct VNode));
+            newNode->Vert = u;
+            newNode->Next = transposeG->Array[v];
+            transposeG->Array[v] = newNode;
+            node = node->Next;
+        }
+    }
+
+    // 第二次DFS遍历转置图，按栈的顺序处理
+    int visited2[MaxVertices] = {0};
+    for (int i = top; i >= 0; i--) {
+        Vertex u = stack[i];
+        if (!visited2[u]) {
+            DFS2(transposeG, u, visited2, visit);
+            printf("\n");
+        }
+    }
+
+    // 释放转置图内存
+    for (int i = 0; i < transposeG->NumOfVertices; i++) {
+        PtrToVNode node = transposeG->Array[i];
+        while (node != NULL) {
+            PtrToVNode tmp = node;
+            node = node->Next;
+            free(tmp);
+        }
+    }
+    free(transposeG->Array);
+    free(transposeG);
+}
+```
 
 ### 6-11 Shortest Path [1]
 

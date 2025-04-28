@@ -1,9 +1,9 @@
 ---
 layout: article
-title: UGUI-Creating UI elements from scripting
+title: UGUI-UIHowTos-Creating UI elements from scripting
 tags: ["Unity", "UGUI"]
-key: CreatingUIElementsFromScripting
-permalink: docs/UGUI/CreatingUIElementsFromScripting
+key: UIHowTos-CreatingUIElementsFromScripting
+permalink: docs/UGUI/UIHowTos/CreatingUIElementsFromScripting
 aside:
   toc: true
 sidebar:

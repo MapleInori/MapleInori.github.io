@@ -115,37 +115,49 @@ docs-UGUI:     # UGUI的文档导航栏
         url:   docs/UGUI/RichText
   - title:     Events
     children: 
+      - title: Events
+        url:   docs/UGUI/Events
       - title: Messaging System
-        url:   docs/UGUI/MessagingSystem
+        url:   docs/UGUI/Events/MessagingSystem
       - title: Input Modules
-        url:   docs/UGUI/InputModules
+        url:   docs/UGUI/Events/InputModules
       - title: Supported Events
-        url:   docs/UGUI/SupportedEvents
+        url:   docs/UGUI/Events/SupportedEvents
       - title: Raycasters
-        url:   docs/UGUI/Raycasters
+        url:   docs/UGUI/Events/Raycasters
   - title:     Reference
     children: 
       - title: Rect Transform
-        url:   docs/UGUI/RectTransform
+        url:   docs/UGUI/Reference/RectTransform
       - title: Canvas Components
-        url:   docs/UGUI/CanvasComponents
+        url:   docs/UGUI/Reference/CanvasComponents
       - title: Visual UI Interaction Components
-        url:   docs/UGUI/VisualUIInteractionComponents
+        url:   docs/UGUI/Reference/VisualUIInteractionComponents
       - title: Interaction Components
-        url:   docs/UGUI/InteractionComponents
+        url:   docs/UGUI/Reference/InteractionComponents
       - title: Auto Layout
-        url:   docs/UGUI/AutoLayout
+        url:   docs/UGUI/Reference/AutoLayout
       - title: Events
-        url:   docs/UGUI/Events
+        url:   docs/UGUI/Reference/Events
   - title:     UI How Tos
     children:
       - title: Designing UI for Multiple Resolutions
-        url:   docs/UGUI/DesigningUIForMultipleResolutions
+        url:   docs/UGUI/UIHowTos/DesigningUIForMultipleResolutions
       - title: Making UI elements fit the size of their content
-        url:   docs/UGUI/MakingUIElementsFitTheSizeOfTheirContent
+        url:   docs/UGUI/UIHowTos/MakingUIElementsFitTheSizeOfTheirContent
       - title: Creating a World Space UI
-        url:   docs/UGUI/CreatingAWorldSpaceUI
+        url:   docs/UGUI/UIHowTos/CreatingAWorldSpaceUI
       - title: Creating UI elements from scripting
-        url:   docs/UGUI/CreatingUIElementsFromScripting
+        url:   docs/UGUI/UIHowTos/CreatingUIElementsFromScripting
       - title: Creating Screen Transitions
-        url:   docs/UGUI/CreatingScreenTransitions
+        url:   docs/UGUI/UIHowTos/CreatingScreenTransitions
+
+docs-C#:
+  - title: C#入门
+    url:   docs/C#/Introduction
+  - title: C#基础
+    url:   docs/C#/Foundation
+  - title: C#核心
+    url:   docs/C#/Core
+  - title: C#进阶
+    url:   docs/C#/Advanced

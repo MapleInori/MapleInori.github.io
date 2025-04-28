@@ -1,9 +1,9 @@
 ---
 layout: article
-title: UGUI-Canvas Components
+title: UGUI-Reference-Canvas Components
 tags: ["Unity", "UGUI"]
-key: CanvasComponents
-permalink: docs/UGUI/CanvasComponents
+key: Reference-CanvasComponents
+permalink: docs/UGUI/Reference/CanvasComponents
 aside:
   toc: true
 sidebar:

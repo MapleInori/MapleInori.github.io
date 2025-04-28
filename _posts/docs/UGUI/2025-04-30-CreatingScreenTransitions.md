@@ -1,9 +1,9 @@
 ---
 layout: article
-title: UGUI-Creating Screen Transitions
+title: UGUI-UIHowTos-Creating Screen Transitions
 tags: ["Unity", "UGUI"]
-key: CreatingScreenTransitions
-permalink: docs/UGUI/CreatingScreenTransitions
+key: UIHowTos-CreatingScreenTransitions
+permalink: docs/UGUI/UIHowTos/CreatingScreenTransitions
 aside:
   toc: true
 sidebar:

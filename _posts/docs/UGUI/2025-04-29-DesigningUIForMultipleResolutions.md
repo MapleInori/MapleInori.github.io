@@ -1,9 +1,9 @@
 ---
 layout: article
-title: UGUI-Designing UI for Multiple Resolutions
+title: UGUI-UIHowTos-Designing UI for Multiple Resolutions
 tags: ["Unity", "UGUI"]
-key: DesigningUIForMultipleResolutions
-permalink: docs/UGUI/DesigningUIForMultipleResolutions
+key: UIHowTos-DesigningUIForMultipleResolutions
+permalink: docs/UGUI/UIHowTos/DesigningUIForMultipleResolutions
 aside:
   toc: true
 sidebar:

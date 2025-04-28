@@ -1,9 +1,9 @@
 ---
 layout: article
-title: UGUI-Visual UI Interaction Components
+title: UGUI-Reference-Visual UI Interaction Components
 tags: ["Unity", "UGUI"]
-key: VisualUIInteractionComponents
-permalink: docs/UGUI/VisualUIInteractionComponents
+key: Reference-VisualUIInteractionComponents
+permalink: docs/UGUI/Reference/VisualUIInteractionComponents
 aside:
   toc: true
 sidebar:

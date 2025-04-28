@@ -1,9 +1,9 @@
 ---
 layout: article
-title: UGUI-Interaction Components
+title: UGUI-Reference-Interaction Components
 tags: ["Unity", "UGUI"]
-key: InteractionComponents
-permalink: docs/UGUI/InteractionComponents
+key: Reference-InteractionComponents
+permalink: docs/UGUI/Reference/InteractionComponents
 aside:
   toc: true
 sidebar:

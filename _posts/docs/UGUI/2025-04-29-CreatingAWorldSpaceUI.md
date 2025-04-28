@@ -1,9 +1,9 @@
 ---
 layout: article
-title: UGUI-Creating a World Space UI
+title: UGUI-UIHowTos-Creating a World Space UI
 tags: ["Unity", "UGUI"]
-key: CreatingAWorldSpaceUI
-permalink: docs/UGUI/CreatingAWorldSpaceUI
+key: UIHowTos-CreatingAWorldSpaceUI
+permalink: docs/UGUI/UIHowTos/CreatingAWorldSpaceUI
 aside:
   toc: true
 sidebar:
