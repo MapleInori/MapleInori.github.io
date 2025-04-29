@@ -151,13 +151,3 @@ docs-UGUI:     # UGUI的文档导航栏
         url:   docs/UGUI/UIHowTos/CreatingUIElementsFromScripting
       - title: Creating Screen Transitions
         url:   docs/UGUI/UIHowTos/CreatingScreenTransitions
-
-docs-C#:
-  - title: C#入门
-    url:   docs/C#/Introduction
-  - title: C#基础
-    url:   docs/C#/Foundation
-  - title: C#核心
-    url:   docs/C#/Core
-  - title: C#进阶
-    url:   docs/C#/Advanced
