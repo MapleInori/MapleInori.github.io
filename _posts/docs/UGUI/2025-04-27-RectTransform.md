@@ -31,8 +31,7 @@ Rect Transform 组件是 Transform（变换）组件在 2D 布局中的对应体
 |  **Blueprint Mode（蓝图模式）**  | 将 RectTransform 编辑为未旋转和未缩放的状态，同时启用对齐吸附（snapping）。                                                                                                                                                                                           |
 | **Raw Edit Mode（原始编辑模式）** | 启用后，编辑枢轴（pivot）和锚点（anchor）值时，不会为了保持矩形位置和大小不变而进行反向调整。                                                                                                                                                                         |
 
-
-## 详细说明（Details）
+## Details（详细说明）
 
 注意，一些 RectTransform 的计算是在一帧的末尾进行的，恰好在计算 UI 顶点之前，这样可以确保其与帧内所有最新变更同步。这意味着，在 Start 回调（Start()）和第一次 Update 回调（Update()）中，这些计算还尚未完成。
 

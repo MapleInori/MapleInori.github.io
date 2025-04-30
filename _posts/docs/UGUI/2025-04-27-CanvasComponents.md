@@ -39,7 +39,7 @@ Canvas 组件代表了一个抽象空间，UI 元素在这个空间中进行布�
 | **Event Camera（事件摄像机）** （仅限 World Space 模式）            | 用于处理 UI 事件的摄像机。                                                                                                                                                                                         |
 | **Receives Events（接收事件）**                                     | 此 Canvas 是否接收和处理 UI 事件？                                                                                                                                                                                 |
 
-### 详细说明（Details）
+### Details（详细说明）
 
 一个场景中通常只需要一个 Canvas 就能满足所有 UI 元素的需求，但也可以有多个 Canvas。还可以使用嵌套 Canvas，即一个 Canvas 作为另一个 Canvas 的子对象，用于优化性能。嵌套 Canvas 会继承其父 Canvas 的 Render Mode（渲染模式）。
 
@@ -65,10 +65,10 @@ Canvas 组件代表了一个抽象空间，UI 元素在这个空间中进行布�
 
 ![1745915354873](image/2025-04-27-CanvasComponents/1745915354873.png)
 
-### **提示（Hints）**
+### **Hints（提示）**
 
 * 想了解如何设置 World Space 模式下的 Canvas，请参见 [Creating a World Space UI](https://mapleinori.net/docs/UGUI/UIHowTos/CreatingAWorldSpaceUI)**（创建世界空间 UI）** 页面。
-* 有关如何使 Canvas 和 UI 适应不同分辨率或宽高比的信息，请参阅 [Designing UI for Multiple Resolutions](https://mapleinori.net/docs/UGUI/UIHowTos/DesigningUIForMultipleResolutions)**（为多种分辨率设计 UI）** 页面以及 [Canvas Scaler](https://mapleinori.net/docs/UGUI/Reference/CanvasComponents#Canvas Scaler) **（画布缩放器）** 页面。
+* 有关如何使 Canvas 和 UI 适应不同分辨率或宽高比的信息，请参阅 [Designing UI for Multiple Resolutions](https://mapleinori.net/docs/UGUI/UIHowTos/DesigningUIForMultipleResolutions)**（为多种分辨率设计 UI）** 页面以及 [Canvas Scaler](https://mapleinori.net/docs/UGUI/Reference/CanvasComponents#canvas-scalercanvas-缩放器) **（画布缩放器）** 页面。
 
 ## Canvas Scaler（Canvas 缩放器）
 
@@ -78,8 +78,8 @@ Canvas Scaler 组件用于控制 Canvas 中 UI 元素的整体缩放和像素密
 
 ### Properties（属性）
 
-| Properties（属性）                            | **Function（功能）**                               |
-| --------------------------------------------- | -------------------------------------------------------- |
+| Properties（属性）                                 | **Function（功能）**                               |
+| -------------------------------------------------- | -------------------------------------------------------- |
 | **UI Scale Mode（UI 缩放模式）**             | 决定 Canvas 中 UI 元素的缩放方式。                       |
 | **Constant Pixel Size（固定像素大小）**      | 使 UI 元素无论屏幕大小如何都保持相同的像素尺寸。         |
 | **Scale With Screen Size（随屏幕尺寸缩放）** | 屏幕越大，UI 元素越大。                                  |
@@ -120,7 +120,7 @@ Canvas Scaler 组件用于控制 Canvas 中 UI 元素的整体缩放和像素密
 | Dynamic Pixels Per Unit（动态单位像素密度） | 用于 UI 中动态生成的位图（如文本）的单位像素数量。                                                                                       |
 | Reference Pixels Per Unit（单位参考像素）   | 如果精灵有此 "Pixels Per Unit" 设置，则精灵中的一个像素将在世界中占据一个单位。如果此值设为 1，则直接使用精灵中的 Pixels Per Unit 设置。 |
 
-### Details（详细信息）
+### Details（详细说明）
 
 当 Canvas 设置为 “Screen Space - Overlay”或 “Screen Space - Camera”时，Canvas Scaler 的 UI Scale Mode 可以设置为 Constant Pixel Size、Scale With Screen Size或 Constant Physical Size。
 
@@ -145,7 +145,6 @@ Canvas Scaler 组件用于控制 Canvas 中 UI 元素的整体缩放和像素密
 ### Hints（提示）
 
 * 请参阅页面 [Designing UI for Multiple Resolutions](https://mapleinori.net/docs/UGUI/UIHowTos/DesigningUIForMultipleResolutions)（为多分辨率设计 UI），其中对如何结合使用 Rect Transform 锚点和 Canvas Scaler 来构建适应不同分辨率和宽高比的 UI 布局进行了逐步说明。
-
 
 ## Canvas Group（画布组）
 
@@ -178,8 +177,8 @@ Canvas Renderer 组件用于在 Canvas（画布）中渲染图形化的 UI 对�
 
 Canvas Renderer 在检查器中没有可见的属性。
 
-### Details（详情）
+### Details（详细说明）
 
 从菜单中创建的标准 UI 对象（ **GameObject > Create UI** ）都会在需要时自动附加 Canvas Renderer 组件，但如果你使用自定义 UI 对象，可能需要手动添加该组件。
 
-尽管在检查器中没有可见的属性，但可以通过脚本访问一些属性和函数 —— 详见脚本参考文档中的 CanvasRenderer 页面以获取完整信息。
+尽管在检查器中没有可见的属性，但可以通过脚本访问一些属性和函数 —— 详见脚本参考文档中的 [CanvasRenderer](https://docs.unity.cn/ScriptReference/CanvasRenderer.html.md) 页面以获取完整信息。
