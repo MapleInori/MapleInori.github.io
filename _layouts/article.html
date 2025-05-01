@@ -47,22 +47,23 @@ type: article
     const isDocs = basePath.includes('/docs/'); // 判断是否在 docs 文件夹下
 
     images.forEach(img => {
-      const src = img.getAttribute('src');  // src是图片的本地相对路径，与文档同级image/xxxx.png
+      const src = img.getAttribute('src');  // src 是图片的本地相对路径，与文档同级 image/xxxx.png
       if (src && src.startsWith('image/')) {
         let newSrc;
         if (isDocs) {
           // 如果文章在 docs 文件夹下，拼接 docs 的图片路径
-          newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts/${basePath}/${src}?raw=true`;
+          const docsBasePath = basePath.split('/').slice(0, 3).join('/'); // 提取 /docs/UGUI 部分
+          newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts${docsBasePath}/${src}?raw=true`;
         } else {
           // 如果文章在 post 根目录下，拼接普通的图片路径
-          newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts/${src}?raw=true`;
+          const articleFolder = basePath.split('/').pop(); // 提取文章文件夹名称
+          newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts/image/${articleFolder}/${src.replace('image/', '')}?raw=true`;
         }
         img.setAttribute('src', newSrc);
+        console.log("新图片路径 (newSrc):", newSrc); // 输出拼接后的图片路径，便于调试
       }
     });
   });
   {%- include scripts/article.js -%}
 </script>
-
-
 
