@@ -54,10 +54,10 @@ type: article
           // 如果文章在 docs 文件夹下，拼接 docs 的图片路径
           const docsBasePath = basePath.split('/').slice(0, 3).join('/'); // 提取 /docs/UGUI 部分
           newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts${docsBasePath}/${src}?raw=true`;
+          // newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts${docsBasePath}/${src}?raw=true`;
         } else {
           // 如果文章在 post 根目录下，拼接普通的图片路径
-          const articleFolder = basePath.split('/').pop(); // 提取文章文件夹名称
-          newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts/image/${articleFolder}/${src.replace('image/', '')}?raw=true`;
+          newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts/${src}?raw=true`;
         }
         img.setAttribute('src', newSrc);
         console.log("新图片路径 (newSrc):", newSrc); // 输出拼接后的图片路径，便于调试
