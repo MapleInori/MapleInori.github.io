@@ -103,7 +103,7 @@ paginate_path: /page:num # don't change this unless for special need
 
 ## => Sources
 ##############################
-sources: # bootcdn (default), unpkg
+sources: bootcdn # bootcdn (default), unpkg
 
 
 ## => Sharing
@@ -196,7 +196,7 @@ exclude:
   - jekyll-text-theme.gemspec
   - package-lock.json
   - package.json
-#  - /docs
+  - /docs
   - /node_modules
   - /screenshots
   - /test
