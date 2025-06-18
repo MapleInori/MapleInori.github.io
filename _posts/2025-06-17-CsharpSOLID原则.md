@@ -3,6 +3,7 @@ layout: article
 title: SOLID原则
 tags: ["C#"]
 key: 20250617
+permalink: CsharpSOLIDprinciple
 aside:
   toc: true
 ---
