@@ -1,7 +1,7 @@
 ---
 layout: article
 title: UGUI-Basic Layout
-tags: ["Unity", "UGUI"]
+tags: ["Unity", "UGUI","Unity Docs"]
 key: BasicLayout
 permalink: docs/UGUI/BasicLayout
 aside:
