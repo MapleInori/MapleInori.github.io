@@ -287,7 +287,7 @@ sidebar:
 
 修改前：
 
-- 新的结构化修改记录页里直接写了包含 Liquid 语法的代码示例，例如 `&#123;%- include ... -%&#125;` 和 `&#123;&#123; ... &#125;&#125;`。
+- 新的结构化修改记录页里直接写了包含 Liquid 语法的代码示例，例如“花括号加百分号的 include 标签写法”和“双层花括号变量写法”。
 - GitHub Pages 使用的 Jekyll 会先解析 Liquid，再处理 Markdown，这会让“本来只是示例代码”的内容被当成真实模板执行。
 
 修改前代码：
@@ -295,8 +295,8 @@ sidebar:
 ```text
 代码块里直接写 Liquid 语法，例如：
 
-&#123;%- include paginator.html -%&#125;
-&#123;&#123; _profile_avatar_url &#125;&#125;
+- 花括号加百分号的 include 标签写法
+- 双层花括号变量写法
 ```
 
 修改后：
@@ -308,9 +308,7 @@ sidebar:
 
 ```text
 在代码块外层增加 raw / endraw 包裹，让 GitHub Pages 只展示代码，不执行其中的 Liquid。
-代码本身仍然保留原样，例如：
-&#123;%- include paginator.html -%&#125;
-&#123;&#123; _profile_avatar_url &#125;&#125;
+行内说明则改成中文描述，不再直接写出模板符号本身。
 ```
 
 ## 2026-03-26（修改 5）
@@ -413,7 +411,7 @@ box-shadow map-get($animation, duration) map-get($animation, timing-function)});
 修改后：
 
 - 在 `AGENTS.md` 中新增 GitHub Pages 兼容注意事项。
-- 明确约束：Markdown 中展示 Liquid 语法要使用 `raw` 包裹或 HTML 实体转义。
+- 明确约束：说明文档记录这类问题时，要用中文描述“双层花括号变量写法”和“花括号加百分号标签写法”；只有技术代码示例才允许用 `raw` 包裹真实模板代码。
 - 明确说明：样式修改要优先兼容 GitHub Pages 自带的旧版 Jekyll / Liquid / Sass 环境。
 - 明确说明：`_posts/image` 与 `_posts/docs/UGUI/image` 已排除出构建，站点级公共资源应优先放在未排除目录。
 
@@ -431,12 +429,12 @@ box-shadow map-get($animation, duration) map-get($animation, timing-function)});
 修改前：
 
 - GitHub Pages 构建会把仓库根目录下的 `AGENTS.md` 当成普通 Markdown 页面处理。
-- `AGENTS.md` 里新增的规则正文包含行内 Liquid 示例，写法是 `&#123;&#123; ... &#125;&#125;` 和 `&#123;% ... %&#125;`，在 GitHub Pages 的 Jekyll 里会先被 Liquid 解析。
-- 结果是构建阶段直接报 `Tag '&#123;% ... %&#125;' was not properly terminated`，站点无法发布。
+- `AGENTS.md` 里新增的规则正文包含行内 Liquid 示例，也就是“双层花括号变量写法”和“花括号加百分号标签写法”，在 GitHub Pages 的 Jekyll 里会先被 Liquid 解析。
+- 结果是构建阶段直接报“标签没有正常结束”的 Liquid 语法错误，站点无法发布。
 
 修改后：
 
-- 把 `AGENTS.md` 中的行内 Liquid 示例改成 HTML 实体转义形式，避免再次触发模板解析。
+- 把 `AGENTS.md` 中的行内 Liquid 示例改成安全写法，避免再次触发模板解析。
 - 在 `_config.yml` 的 `exclude` 中加入 `AGENTS.md`，让它只作为仓库协作文档存在，不再参与 GitHub Pages 构建。
 - 以后即使继续补充 Agent 规则，也不会再因为这个文件本身进入构建流程而影响站点发布。
 
@@ -452,10 +450,31 @@ box-shadow map-get($animation, duration) map-get($animation, timing-function)});
 修改前：
 
 - `修改 7` 这条记录在描述报错原因时，又直接写了一次行内 Liquid 示例。
-- 虽然逻辑上是在说明问题，但这两段 `&#123;&#123; ... &#125;&#125;` 与 `&#123;% ... %&#125;` 仍会被 GitHub Pages 当成真实 Liquid 语法解析。
+- 虽然逻辑上是在说明问题，但这两类写法本身仍会被 GitHub Pages 当成真实 Liquid 语法解析。
 - 结果是构建报错位置从 `AGENTS.md` 转移到了这篇项目修改记录页本身。
 
 修改后：
 
-- 把 `修改 7` 里的行内 Liquid 示例统一改成 HTML 实体转义形式。
+- 把 `修改 7` 里的行内 Liquid 示例统一改成中文描述。
 - 这样这篇修改记录页在描述 Liquid 报错时，也不会再自己触发同类构建错误。
+
+## 2026-03-26（修改 9）
+
+### 用中文描述模板符号问题，并移除记录中的相关符号
+
+涉及文件：
+
+- `AGENTS.md`
+- `_posts/docs/BlogChanges/2026-03-26-BlogChangeRecord01.md`
+- `CHANGELOG.md`
+
+修改前：
+
+- `AGENTS.md` 和项目修改记录已经知道这类问题与 Liquid 模板有关，但仍然保留了部分符号本身或实体转义写法。
+- 这些内容虽然主要是说明文字，但后续继续编辑时很容易再次把相同风险带回说明文档。
+
+修改后：
+
+- 在 `AGENTS.md` 中改用中文明确说明是哪两类符号、会在什么情况下触发 GitHub Pages 构建报错。
+- 规则进一步收紧为：`AGENTS.md`、项目修改记录、`CHANGELOG.md` 这类说明文档统一只用中文描述，不再写这些符号本身。
+- 同时把当前项目修改记录里与这次问题相关的符号表述一并替换成中文，降低后续重复踩坑的概率。
