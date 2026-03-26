@@ -16,6 +16,14 @@
 - 未经明确要求，不批量修改个人文章、学习笔记或配图。
 - 涉及构建、布局、样式、脚本或配置时，结束前说明是否做过验证；如果没验证，也要明确写出。
 
+## GitHub Pages 兼容注意
+
+- 本仓库最终运行在 GitHub Pages 自带的 Jekyll 环境上，协作时优先兼容 GitHub Pages 的旧版 Jekyll / Liquid / Sass，而不是只按本地编辑器或新语法习惯编写。
+- 在 Markdown 文档里演示 Liquid 语法时，不要直接裸写 `{{ ... }}` 或 `{% ... %}`。代码块应使用 `raw` / `endraw` 包裹，行内示例应使用 HTML 实体转义，避免构建时被当成真实模板执行。
+- 主题 SCSS 的 mixin 调用尽量沿用仓库现有写法；如果是 `transition` 这类主题封装过的 mixin，优先使用主题已经兼容的参数形式。
+- `_posts/image` 与 `_posts/docs/UGUI/image` 已加入构建排除列表，不应依赖 Jekyll 在发布时复制这些目录下的图片。
+- 需要长期参与站点构建或页面渲染的公共资源，优先放在未被排除的站点资源目录中，例如 `assets/`。
+
 ## 哪些改动需要记录到 `CHANGELOG.md`
 
 只要修改属于“GitHub Pages 项目本身”，就应在 [`CHANGELOG.md`](./CHANGELOG.md) 顶部补充记录。包括但不限于：

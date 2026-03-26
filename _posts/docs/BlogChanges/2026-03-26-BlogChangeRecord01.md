@@ -394,3 +394,25 @@ exclude:
 border-color map-get($animation, duration) map-get($animation, timing-function),
 box-shadow map-get($animation, duration) map-get($animation, timing-function)});
 ```
+
+## 2026-03-26（修改 6）
+
+### 更新协作规则，补充 GitHub Pages 构建兼容约束
+
+涉及文件：
+
+- `AGENTS.md`
+- `_posts/docs/BlogChanges/2026-03-26-BlogChangeRecord01.md`
+- `CHANGELOG.md`
+
+修改前：
+
+- 协作规则已经要求记录项目级改动，但没有把这次排查出来的 GitHub Pages 构建兼容细节写进去。
+- 文档里还缺少对 Liquid 示例写法、旧版 Sass mixin 兼容形式，以及 `_posts` 图片目录已被排除出构建的明确说明。
+
+修改后：
+
+- 在 `AGENTS.md` 中新增 GitHub Pages 兼容注意事项。
+- 明确约束：Markdown 中展示 Liquid 语法要使用 `raw` 包裹或 HTML 实体转义。
+- 明确说明：样式修改要优先兼容 GitHub Pages 自带的旧版 Jekyll / Liquid / Sass 环境。
+- 明确说明：`_posts/image` 与 `_posts/docs/UGUI/image` 已排除出构建，站点级公共资源应优先放在未排除目录。
