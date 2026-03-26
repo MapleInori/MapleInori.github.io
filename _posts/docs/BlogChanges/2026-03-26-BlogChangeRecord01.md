@@ -416,3 +416,26 @@ box-shadow map-get($animation, duration) map-get($animation, timing-function)});
 - 明确约束：Markdown 中展示 Liquid 语法要使用 `raw` 包裹或 HTML 实体转义。
 - 明确说明：样式修改要优先兼容 GitHub Pages 自带的旧版 Jekyll / Liquid / Sass 环境。
 - 明确说明：`_posts/image` 与 `_posts/docs/UGUI/image` 已排除出构建，站点级公共资源应优先放在未排除目录。
+
+## 2026-03-26（修改 7）
+
+### 排除 `AGENTS.md` 参与站点构建，并修复文档内的 Liquid 行内示例
+
+涉及文件：
+
+- `AGENTS.md`
+- `_config.yml`
+- `_posts/docs/BlogChanges/2026-03-26-BlogChangeRecord01.md`
+- `CHANGELOG.md`
+
+修改前：
+
+- GitHub Pages 构建会把仓库根目录下的 `AGENTS.md` 当成普通 Markdown 页面处理。
+- `AGENTS.md` 里新增的规则正文包含行内 Liquid 示例，写法是 `{{ ... }}` 和 `{% ... %}`，在 GitHub Pages 的 Jekyll 里会先被 Liquid 解析。
+- 结果是构建阶段直接报 `Tag '{% ... %}' was not properly terminated`，站点无法发布。
+
+修改后：
+
+- 把 `AGENTS.md` 中的行内 Liquid 示例改成 HTML 实体转义形式，避免再次触发模板解析。
+- 在 `_config.yml` 的 `exclude` 中加入 `AGENTS.md`，让它只作为仓库协作文档存在，不再参与 GitHub Pages 构建。
+- 以后即使继续补充 Agent 规则，也不会再因为这个文件本身进入构建流程而影响站点发布。
