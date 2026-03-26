@@ -5,6 +5,7 @@
 {%- else -%}
   <header class="header" {%- if include.background -%} style="background: {{ include.background }};" {%- endif -%}>
 {%- endif -%}
+    {%- assign _hide_navigation = page.header.hide_navigation | default: layout.header.hide_navigation -%}
     <div class="main">
       <div class="header__title">
         <div class="header__brand">
@@ -19,7 +20,7 @@
           <button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button>
         {%- endif -%}
       </div>
-      {%- if site.data.navigation.header -%}
+      {%- if site.data.navigation.header and _hide_navigation != true -%}
       <nav class="navigation">
         <ul>
           {%- for _item in site.data.navigation.header -%}

@@ -24,6 +24,12 @@ title   : MapleInori's blog
 description: > # this means to ignore newlines until "Language & timezone"
   记录一点东西。
 
+home_profile:
+  avatar: /assets/images/logo/Icon.jpg
+  nickname: MapleInori
+  message: >-
+    欢迎来到我的个人博客。这里主要记录 Unity、UGUI、C#、游戏开发练习，以及这个站点本身的折腾过程。
+
 
 ## => Language and Timezone
 ##############################

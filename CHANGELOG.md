@@ -1,5 +1,24 @@
 # Change Log
 
+## 2026-03-26
+
+### Added
+
+- Add `AGENTS.md` for repository-specific agent collaboration rules
+- Clarify that site-level GitHub Pages changes should be recorded here, while personal documents under `_posts/` do not require changelog entries
+- Add a home profile panel with avatar, nickname and custom intro text
+- Add a home directory panel and a sidebar navigation group for project change logs
+- Add a dedicated `BlogChanges` document folder and the first structured project change record page
+
+### Changed
+
+- Move homepage navigation titles from the top bar into a right-side directory panel on the home page
+- Add repository rules for detailed project change logs, including dated entries and per-document limits for future log pages
+- Remove the broken `Csharp` header entry while reorganizing homepage navigation
+- Require before/after code snippets in project logs when HTML, CSS or JavaScript files are modified
+- Move the latest structured project change notes out of the legacy `Blog修改` article into the new `BlogChanges` archive
+
+
 ## 2.2.6 (2019-02-02)
 
 ### Enhancements

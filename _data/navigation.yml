@@ -1,13 +1,16 @@
 header: # 首页顶部导航栏
   - titles:
-      en      : &EN       Csharp
-    url: docs/Csharp/Level1
-  - titles:
       en      : &EN       UGUI
+      zh-Hans : UGUI
+      zh      : UGUI
     url: /docs/UGUI/UnityUserInterface
+    description: Unity UI 与 UGUI 相关文档
   - titles:
       en      : &EN       Unity
+      zh-Hans : Unity
+      zh      : Unity
     url: docs/Unity/Level1
+    description: Unity 学习路径与问题记录
 
   - titles:
       # @start locale config
@@ -34,6 +37,7 @@ header: # 首页顶部导航栏
       tr      : &TR       Arşivdekiler
       # @end locale config
     url: /archive.html
+    description: 浏览所有文章与历史内容
 
   - titles:
       # @start locale config
@@ -60,6 +64,7 @@ header: # 首页顶部导航栏
       tr      : &TR       Hakkında
       # @end locale config
     url: /about.html
+    description: 个人简介与学习计划
 
 
 
@@ -76,6 +81,16 @@ docs-test:
       - title:  三级子级测试，下一级无法显示
         children:
           - title:  空
+
+docs-blog-changes:
+  - title: 历史记录
+    children:
+      - title: Blog 修改总记录
+        url: /logs/BlogChange
+  - title: 结构化记录
+    children:
+      - title: 项目修改记录 01
+        url: /docs/BlogChanges/ChangeRecord01
 
 #region  UGUI的文档导航栏 
 docs-UGUI:     # UGUI的文档导航栏

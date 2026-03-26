@@ -1,0 +1,18 @@
+{%- assign _profile_avatar = site.home_profile.avatar | default: site.author.avatar | default: '/assets/images/logo/logo.svg' -%}
+{%- assign _profile_name = site.home_profile.nickname | default: site.author.name | default: site.title -%}
+{%- assign _profile_message = site.home_profile.message | default: site.description -%}
+{%- include snippets/get-nav-url.html path=_profile_avatar -%}
+{%- assign _profile_avatar_url = __return -%}
+
+<section class="home-profile card card--flat">
+  <div class="home-profile__avatar-wrap">
+    <img class="home-profile__avatar" src="{{ _profile_avatar_url }}" alt="{{ _profile_name }}">
+  </div>
+  <div class="home-profile__content">
+    <p class="home-profile__eyebrow">{{ site.title }}</p>
+    <h2 class="home-profile__name">{{ _profile_name }}</h2>
+    {%- if _profile_message -%}
+      <p class="home-profile__message">{{ _profile_message }}</p>
+    {%- endif -%}
+  </div>
+</section>

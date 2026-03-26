@@ -1,5 +1,7 @@
 ---
 layout: articles
+header:
+  hide_navigation: true
 titles:
   # @start locale config
   en      : &EN       Home
@@ -34,7 +36,19 @@ articles:
   show_info: true
 ---
 <div class="layout--home">
-  {%- include paginator.html -%}
+  <div class="home__grid">
+    <aside class="home__column home__column--profile">
+      {%- include home/profile-card.html -%}
+    </aside>
+
+    <div class="home__column home__column--feed">
+      {%- include paginator.html -%}
+    </div>
+
+    <aside class="home__column home__column--directory">
+      {%- include home/directory-panel.html -%}
+    </aside>
+  </div>
 </div>
 <script>
   {%- include scripts/home.js -%}
