@@ -431,11 +431,31 @@ box-shadow map-get($animation, duration) map-get($animation, timing-function)});
 修改前：
 
 - GitHub Pages 构建会把仓库根目录下的 `AGENTS.md` 当成普通 Markdown 页面处理。
-- `AGENTS.md` 里新增的规则正文包含行内 Liquid 示例，写法是 `{{ ... }}` 和 `{% ... %}`，在 GitHub Pages 的 Jekyll 里会先被 Liquid 解析。
-- 结果是构建阶段直接报 `Tag '{% ... %}' was not properly terminated`，站点无法发布。
+- `AGENTS.md` 里新增的规则正文包含行内 Liquid 示例，写法是 `&#123;&#123; ... &#125;&#125;` 和 `&#123;% ... %&#125;`，在 GitHub Pages 的 Jekyll 里会先被 Liquid 解析。
+- 结果是构建阶段直接报 `Tag '&#123;% ... %&#125;' was not properly terminated`，站点无法发布。
 
 修改后：
 
 - 把 `AGENTS.md` 中的行内 Liquid 示例改成 HTML 实体转义形式，避免再次触发模板解析。
 - 在 `_config.yml` 的 `exclude` 中加入 `AGENTS.md`，让它只作为仓库协作文档存在，不再参与 GitHub Pages 构建。
 - 以后即使继续补充 Agent 规则，也不会再因为这个文件本身进入构建流程而影响站点发布。
+
+## 2026-03-26（修改 8）
+
+### 修复项目修改记录页自身的 Liquid 行内示例转义遗漏
+
+涉及文件：
+
+- `_posts/docs/BlogChanges/2026-03-26-BlogChangeRecord01.md`
+- `CHANGELOG.md`
+
+修改前：
+
+- `修改 7` 这条记录在描述报错原因时，又直接写了一次行内 Liquid 示例。
+- 虽然逻辑上是在说明问题，但这两段 `&#123;&#123; ... &#125;&#125;` 与 `&#123;% ... %&#125;` 仍会被 GitHub Pages 当成真实 Liquid 语法解析。
+- 结果是构建报错位置从 `AGENTS.md` 转移到了这篇项目修改记录页本身。
+
+修改后：
+
+- 把 `修改 7` 里的行内 Liquid 示例统一改成 HTML 实体转义形式。
+- 这样这篇修改记录页在描述 Liquid 报错时，也不会再自己触发同类构建错误。

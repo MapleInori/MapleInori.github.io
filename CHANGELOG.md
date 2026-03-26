@@ -18,6 +18,7 @@
 - Require before/after code snippets in project logs when HTML, CSS or JavaScript files are modified
 - Document GitHub Pages compatibility rules in `AGENTS.md`, including Liquid example escaping and excluded `_posts` image folders
 - Exclude `AGENTS.md` from Jekyll build input and escape its inline Liquid examples so repository instructions do not break GitHub Pages builds
+- Escape the remaining inline Liquid examples inside the structured `BlogChanges` log page so the log document itself no longer breaks GitHub Pages builds
 - Move the latest structured project change notes out of the legacy `Blog修改` article into the new `BlogChanges` archive
 - Escape Liquid-style code examples in project log posts so GitHub Pages does not parse them during build
 - Rewrite the home directory card `transition` call to match the older Sass mixin signature used by GitHub Pages
