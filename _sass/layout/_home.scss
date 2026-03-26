@@ -98,7 +98,9 @@
   border: 1px solid rgba($main-color-1, .1);
   border-radius: map-get($base, border-radius);
   text-decoration: none;
-  @include transition(transform map-get($animation, duration), border-color map-get($animation, duration), box-shadow map-get($animation, duration));
+  @include transition(#{transform map-get($animation, duration) map-get($animation, timing-function),
+  border-color map-get($animation, duration) map-get($animation, timing-function),
+  box-shadow map-get($animation, duration) map-get($animation, timing-function)});
 
   &:hover {
     border-color: rgba($main-color-1, .3);

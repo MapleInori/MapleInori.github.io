@@ -312,3 +312,37 @@ sidebar:
 &#123;%- include paginator.html -%&#125;
 &#123;&#123; _profile_avatar_url &#125;&#125;
 ```
+
+## 2026-03-26（修改 4）
+
+### 调整首页目录卡片的过渡动画写法以兼容 GitHub Pages 自带 Sass
+
+涉及文件：
+
+- `_sass/layout/_home.scss`
+- `_posts/docs/BlogChanges/2026-03-26-BlogChangeRecord01.md`
+- `CHANGELOG.md`
+
+修改前：
+
+- 首页目录卡片的 hover 动画使用了三个独立参数调用 `transition` mixin。
+- 但当前主题里的 `transition` mixin 只接受一个参数，GitHub Pages 自带的旧版 Sass 在构建时会直接报错。
+
+修改前代码：
+
+```scss
+@include transition(transform map-get($animation, duration), border-color map-get($animation, duration), box-shadow map-get($animation, duration));
+```
+
+修改后：
+
+- 把三个动画项合并成主题已有写法支持的单参数形式。
+- 现在既保留原来的过渡效果，也兼容 GitHub Pages 使用的 Sass 3.7 / Jekyll 3.10 环境。
+
+修改后代码：
+
+```scss
+@include transition(#{transform map-get($animation, duration) map-get($animation, timing-function),
+border-color map-get($animation, duration) map-get($animation, timing-function),
+box-shadow map-get($animation, duration) map-get($animation, timing-function)});
+```
