@@ -204,6 +204,8 @@ LSP全称Liskov Substitution Principle
 
 里氏替换原则指出，程序中的对象应该可以被它们的子类所替换，而不会影响程序的正确性。这意味着子类应该能够完全代替其父类。违反这个原则可能会导致代码的脆弱性和不可预测的行为。
 
+> [里氏替换原则（LSP） - MapleInori&#39;s blog](https://mapleinori.net/docs/LiskovSubstitutionPrinciple)
+
 ### 核心思想
 
 * **子类必须完全替代父类** ：任何父类出现的地方，子类都应该能无缝替换，且程序行为保持一致。
@@ -567,6 +569,7 @@ public class ExternalInventoryAdapter : IInventoryServicePort {
       public PricingService(IDiscountStrategy strategy) { ... }
   }
   ```
+  
 * **装饰器模式 + DIP**
   透明地扩展功能：
 
