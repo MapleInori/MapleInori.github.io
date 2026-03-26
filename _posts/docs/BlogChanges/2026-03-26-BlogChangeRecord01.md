@@ -287,7 +287,7 @@ sidebar:
 
 修改前：
 
-- 新的结构化修改记录页里直接写了包含 Liquid 语法的代码示例，例如 `{%- include ... -%}` 和 `{{ ... }}`。
+- 新的结构化修改记录页里直接写了包含 Liquid 语法的代码示例，例如 `&#123;%- include ... -%&#125;` 和 `&#123;&#123; ... &#125;&#125;`。
 - GitHub Pages 使用的 Jekyll 会先解析 Liquid，再处理 Markdown，这会让“本来只是示例代码”的内容被当成真实模板执行。
 
 修改前代码：
@@ -311,6 +311,54 @@ sidebar:
 代码本身仍然保留原样，例如：
 &#123;%- include paginator.html -%&#125;
 &#123;&#123; _profile_avatar_url &#125;&#125;
+```
+
+## 2026-03-26（修改 5）
+
+### 排除 `_posts` 下的二进制图片目录，避免 GitHub Pages 把图片当 UTF-8 文本读取
+
+涉及文件：
+
+- `_config.yml`
+- `_posts/docs/BlogChanges/2026-03-26-BlogChangeRecord01.md`
+- `CHANGELOG.md`
+
+修改前：
+
+- GitHub Pages 构建时会扫描 `_posts/image` 和 `_posts/docs/UGUI/image` 下的二进制图片。
+- 在当前环境里，这些文件被不断报成 `invalid byte sequence in UTF-8`，日志非常长，也会干扰定位真正的致命错误。
+
+修改前代码：
+
+```yml
+exclude:
+  - CHANGELOG.md
+  - HOW_TO_RELEASE.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README-*.md
+  - README.md
+```
+
+修改后：
+
+- 把 `_posts/image` 和 `_posts/docs/UGUI/image` 加入 `exclude`。
+- 这些图片本来就通过外部地址访问，不依赖 Jekyll 复制到 `_site`，因此这里直接排除更稳妥。
+
+修改后代码：
+
+```yml
+exclude:
+  - CHANGELOG.md
+  - HOW_TO_RELEASE.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README-*.md
+  - README.md
+  - /_posts/image
+  - /_posts/docs/UGUI/image
 ```
 
 ## 2026-03-26（修改 4）

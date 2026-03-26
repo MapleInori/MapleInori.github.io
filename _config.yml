@@ -203,6 +203,8 @@ exclude:
   - package-lock.json
   - package.json
   - /docs
+  - /_posts/image
+  - /_posts/docs/UGUI/image
   - /node_modules
   - /screenshots
   - /test
