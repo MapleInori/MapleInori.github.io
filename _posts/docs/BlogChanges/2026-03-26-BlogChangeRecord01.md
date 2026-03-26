@@ -36,11 +36,13 @@ sidebar:
 
 `_layouts/home.html`
 
+{% raw %}
 ```html
 <div class="layout--home">
   {%- include paginator.html -%}
 </div>
 ```
+{% endraw %}
 
 `_sass/layout/_home.scss`
 
@@ -85,6 +87,7 @@ sidebar:
 
 `_layouts/home.html`
 
+{% raw %}
 ```html
 <div class="layout--home">
   <div class="home__grid">
@@ -102,9 +105,11 @@ sidebar:
   </div>
 </div>
 ```
+{% endraw %}
 
 `_includes/home/profile-card.html`
 
+{% raw %}
 ```html
 <section class="home-profile card card--flat">
   <div class="home-profile__avatar-wrap">
@@ -119,9 +124,11 @@ sidebar:
   </div>
 </section>
 ```
+{% endraw %}
 
 `_includes/home/directory-panel.html`
 
+{% raw %}
 ```html
 <section class="home-directory card card--flat">
   <div class="home-directory__header">
@@ -141,6 +148,7 @@ sidebar:
   </ul>
 </section>
 ```
+{% endraw %}
 
 `_sass/layout/_home.scss`
 
@@ -180,6 +188,7 @@ sidebar:
 
 `_includes/header.html`
 
+{% raw %}
 ```html
 {%- if site.data.navigation.header -%}
 <nav class="navigation">
@@ -191,6 +200,7 @@ sidebar:
 </nav>
 {%- endif -%}
 ```
+{% endraw %}
 
 修改后：
 
@@ -202,6 +212,7 @@ sidebar:
 
 `_includes/header.html`
 
+{% raw %}
 ```html
 {%- assign _hide_navigation = page.header.hide_navigation | default: layout.header.hide_navigation -%}
 ...
@@ -215,6 +226,7 @@ sidebar:
 </nav>
 {%- endif -%}
 ```
+{% endraw %}
 
 ### 项目修改记录接入侧边栏导航并补充规则
 
@@ -262,3 +274,41 @@ sidebar:
 - `docs-blog-changes` 导航同时包含旧的 `Blog修改` 和新的结构化记录文件。
 - 协作规则新增：如果改动涉及 HTML、CSS、JavaScript，日志必须记录修改文件、修改前代码和修改后代码。
 - 结构化记录文件从这一篇开始按“每篇最多 10 次修改”的规则继续滚动。
+
+## 2026-03-26（修改 3）
+
+### 转义修改记录文档中的 Liquid 代码片段以修复 GitHub Pages 构建
+
+涉及文件：
+
+- `_posts/docs/BlogChanges/2026-03-26-BlogChangeRecord01.md`
+- `_posts/2025-01-08-Blog修改.md`
+- `CHANGELOG.md`
+
+修改前：
+
+- 新的结构化修改记录页里直接写了包含 Liquid 语法的代码示例，例如 `{%- include ... -%}` 和 `{{ ... }}`。
+- GitHub Pages 使用的 Jekyll 会先解析 Liquid，再处理 Markdown，这会让“本来只是示例代码”的内容被当成真实模板执行。
+
+修改前代码：
+
+```text
+代码块里直接写 Liquid 语法，例如：
+
+&#123;%- include paginator.html -%&#125;
+&#123;&#123; _profile_avatar_url &#125;&#125;
+```
+
+修改后：
+
+- 给新日志页和旧 `Blog修改` 里带 Liquid 的代码示例补上 `raw` 包裹。
+- 这样页面仍然显示原始代码，但构建时不会再把这些示例当模板执行。
+
+修改后代码：
+
+```text
+在代码块外层增加 raw / endraw 包裹，让 GitHub Pages 只展示代码，不执行其中的 Liquid。
+代码本身仍然保留原样，例如：
+&#123;%- include paginator.html -%&#125;
+&#123;&#123; _profile_avatar_url &#125;&#125;
+```

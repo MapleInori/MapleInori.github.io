@@ -17,6 +17,7 @@
 - Remove the broken `Csharp` header entry while reorganizing homepage navigation
 - Require before/after code snippets in project logs when HTML, CSS or JavaScript files are modified
 - Move the latest structured project change notes out of the legacy `Blog修改` article into the new `BlogChanges` archive
+- Escape Liquid-style code examples in project log posts so GitHub Pages does not parse them during build
 
 
 ## 2.2.6 (2019-02-02)
