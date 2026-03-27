@@ -4,14 +4,25 @@
     {%- include snippets/get-locale-string.html key='STATISTICS' -%}
     {%- assign _locale_statistics = __return -%}
 
-    {%- assign _post_count = site.posts | size -%}
-    {%- assign _page_count = paginator.total_pages -%}
+    {%- if page.layout == 'home' -%}
+      {%- assign _visible_posts = site.posts | where_exp: '_post', '_post.home_exclude != true' -%}
+      {%- assign _post_count = _visible_posts | size -%}
+      {%- assign _per_page = site.paginate | default: 8 -%}
+      {%- assign _page_count = _post_count | divided_by: _per_page -%}
+      {%- assign _page_remainder = _post_count | modulo: _per_page -%}
+      {%- if _page_remainder > 0 -%}
+        {%- assign _page_count = _page_count | plus: 1 -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- assign _post_count = site.posts | size -%}
+      {%- assign _page_count = paginator.total_pages -%}
+    {%- endif -%}
     <p>{{ _locale_statistics | replace: '[POST_COUNT]', _post_count | replace: '[PAGE_COUNT]', _page_count }}</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap">
         {%- assign _max_show = 5 -%}
         {%- assign _max_show_modulo_two = _max_show | modulo: 2 -%}
-        {%- assign _length = paginator.total_pages -%}
+        {%- assign _length = _page_count -%}
         {%- assign _length_mimus_one = _length | minus: 1 -%}
         {%- assign _cur = paginator.page -%}
         {%- assign _extra = _max_show | minus: 3 -%}

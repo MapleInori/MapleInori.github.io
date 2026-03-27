@@ -4,6 +4,7 @@ title: Blog 项目修改记录 01
 tags: ["Blog", "项目修改记录"]
 key: BlogChangeRecord01
 permalink: docs/BlogChanges/ChangeRecord01
+home_exclude: true
 aside:
   toc: true
 sidebar:

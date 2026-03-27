@@ -9,6 +9,8 @@
 - Widen the home page content area and narrow the side columns so the central post list is no longer squeezed by the three-column layout
 - Simplify the home right-side directory to collection names only so it behaves like a compact collection index instead of a verbose card list
 - Restore the home post list rendering and re-enable collection descriptions in the right-side directory panel
+- Expand `AGENTS.md` with a reusable summary of discovered issues, maintenance checks, and self-iteration expectations for future site updates
+- Hide structured `BlogChanges` records from the home post stream while keeping the legacy `Blog修改` article visible there
 
 ## 2026-03-26
 

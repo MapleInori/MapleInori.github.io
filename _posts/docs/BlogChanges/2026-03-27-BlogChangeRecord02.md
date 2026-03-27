@@ -4,6 +4,7 @@ title: Blog 项目修改记录 02
 tags: ["Blog", "项目修改记录"]
 key: BlogChangeRecord02
 permalink: docs/BlogChanges/ChangeRecord02
+home_exclude: true
 aside:
   toc: true
 sidebar:
@@ -159,6 +160,86 @@ full_width: true
     <span class="home-directory__item-title">{{ _item.title }}</span>
   </a>
 </li>
+```
+{% endraw %}
+
+## 2026-03-27（修改 5）
+
+### 总结本轮排查经验，并把可复用规则回写到 Agent 文档
+
+涉及文件：
+
+- `AGENTS.md`
+- `_posts/docs/BlogChanges/2026-03-27-BlogChangeRecord02.md`
+
+修改前：
+
+- `AGENTS.md` 已经记录了部分规则，但还缺少一份基于这几轮真实排查过程整理出来的“已知问题和处理经验”。
+- 对 Agent 的要求主要还是“记录规则”，还没有明确强调：遇到同类问题后，应该主动复盘、提炼判断标准，并把稳定经验回写到规则文档中。
+
+修改后：
+
+- 在 `AGENTS.md` 中新增“已知问题与处理经验”，把 GitHub Pages 构建、首页三栏布局、主页导航职责分离、文章列表与分页关系、资源目录使用方式等经验集中写清楚。
+- 新增“Agent 自我迭代要求”，明确要求后续修改不能只做一次性补丁，而要在问题解决后主动沉淀规则、补齐判断标准、检查文档是否过时。
+- 这样后续再改首页、日志、导航或构建配置时，可以直接按经验清单检查，减少重复踩坑。
+
+## 2026-03-27（修改 6）
+
+### 让新的结构化修改记录不再出现在主页文章列表
+
+涉及文件：
+
+- `AGENTS.md`
+- `_layouts/home.html`
+- `_includes/paginator.html`
+- `_posts/docs/BlogChanges/2026-03-26-BlogChangeRecord01.md`
+- `_posts/docs/BlogChanges/2026-03-27-BlogChangeRecord02.md`
+
+修改前：
+
+- 新的结构化修改记录和普通文章一样都属于 `_posts`，因此会一起出现在主页中间的文章列表中。
+- 旧的 `Blog修改` 文章也在 `_posts` 中，但用户希望它继续保留在主页文章流里，不需要隐藏。
+- 主页当前直接读取 `paginator.posts` 渲染文章流，没有区分“应显示在首页”的文章和“只应保留在合集里的记录页”。
+
+修改前代码：
+
+`_layouts/home.html`
+
+{% raw %}
+```html
+<div class="layout--articles">
+  {%- include article-list.html articles=paginator.posts type='item'
+    article_type='BlogPosting'
+    show_cover=false
+    show_excerpt=true
+    show_readmore=true
+    show_info=true -%}
+</div>
+```
+{% endraw %}
+
+修改后：
+
+- 给新的结构化修改记录文件统一增加 `home_exclude: true` 标记。
+- 首页文章流改为先过滤掉带有这个标记的记录页，再渲染文章列表。
+- 分页统计文案也改为按过滤后的可见文章数量显示，避免主页上继续把隐藏记录算进去。
+- 最初的 `Blog修改` 文章没有加这个标记，因此仍然会保留在主页文章流里。
+
+修改后代码：
+
+`_layouts/home.html`
+
+{% raw %}
+```html
+{%- assign _home_posts = paginator.posts | where_exp: '_post', '_post.home_exclude != true' -%}
+<div class="layout--articles">
+  {%- include article-list.html articles=_home_posts type='item'
+    article_type='BlogPosting'
+    show_cover=false
+    show_excerpt=true
+    show_readmore=true
+    show_info=true -%}
+</div>
 ```
 {% endraw %}
 

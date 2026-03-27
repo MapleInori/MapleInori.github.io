@@ -35,8 +35,9 @@ show_title: false
     </aside>
 
     <div class="home__column home__column--feed">
+      {%- assign _home_posts = paginator.posts | where_exp: '_post', '_post.home_exclude != true' -%}
       <div class="layout--articles">
-        {%- include article-list.html articles=paginator.posts type='item'
+        {%- include article-list.html articles=_home_posts type='item'
           article_type='BlogPosting'
           show_cover=false
           show_excerpt=true
