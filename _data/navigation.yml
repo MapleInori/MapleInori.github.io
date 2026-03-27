@@ -58,13 +58,10 @@ home-directory:
     children:
       - title: UGUI
         url: /docs/UGUI/UnityUserInterface
-        description: Unity UI 与 UGUI 学习与整理
       - title: Unity
         url: /docs/Unity/Level1
-        description: Unity 学习路径、问题记录与阶段笔记
       - title: Blog 修改
         url: /docs/BlogChanges/ChangeRecord01
-        description: 站点项目结构、样式与构建调整记录
 
 
 

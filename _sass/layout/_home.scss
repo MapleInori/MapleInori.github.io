@@ -3,7 +3,7 @@
 
   .home__grid {
     display: grid;
-    grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr) minmax(15rem, 19rem);
+    grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr) minmax(12rem, 15rem);
     gap: map-get($spacers, 4);
     align-items: start;
   }
@@ -141,7 +141,7 @@
 @include media-breakpoint-down(lg) {
   .layout--home {
     .home__grid {
-      grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
+      grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr);
     }
 
     .home__column--directory {

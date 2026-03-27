@@ -4,7 +4,7 @@
   <div class="home-directory__header">
     <p class="home-directory__eyebrow">My Docs</p>
     <h2 class="home-directory__title">文档目录</h2>
-    <p class="home-directory__intro">主页右侧展示我维护的文档入口，顶部导航保留站点级页面与搜索。</p>
+    <p class="home-directory__intro">这里只保留合集入口，点击后跳转到对应合集的入口页。</p>
   </div>
 
   {%- for _group in _home_directory_groups -%}
@@ -17,9 +17,6 @@
           <li class="home-directory__item">
             <a href="{{ _nav_url }}">
               <span class="home-directory__item-title">{{ _item.title }}</span>
-              {%- if _item.description -%}
-                <span class="home-directory__item-description">{{ _item.description }}</span>
-              {%- endif -%}
             </a>
           </li>
         {%- endfor -%}

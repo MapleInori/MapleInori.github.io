@@ -6,6 +6,8 @@
 
 - Update `AGENTS.md` so the home right-side navigation stays collection-only and project log entries no longer need to mention `CHANGELOG.md` file updates in their detailed file lists
 - Add `Blog 项目修改记录 02` and link it into the structured change-log sidebar navigation
+- Widen the home page content area and narrow the side columns so the central post list is no longer squeezed by the three-column layout
+- Simplify the home right-side directory to collection names only so it behaves like a compact collection index instead of a verbose card list
 
 ## 2026-03-26
 
