@@ -16,7 +16,7 @@
             <a title="{%- if site.description -%}{{ site.description }}{%- endif -%}" href="{{ __return }}">{{ site.title }}</a>
           {%- endif -%}
         </div>
-        {%- if site.search.provider -%}
+        {%- if site.search.provider and _hide_navigation == true -%}
           <button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button>
         {%- endif -%}
       </div>

@@ -1,26 +1,30 @@
-{%- if site.data.navigation.header -%}
+{%- assign _home_directory_groups = site.data.navigation['home-directory'] -%}
+{%- if _home_directory_groups -%}
 <section class="home-directory card card--flat">
   <div class="home-directory__header">
-    <p class="home-directory__eyebrow">Site Map</p>
-    <h2 class="home-directory__title">目录</h2>
-    <p class="home-directory__intro">主页右侧集中放置常用入口，顶部在首页保留品牌与搜索。</p>
+    <p class="home-directory__eyebrow">My Docs</p>
+    <h2 class="home-directory__title">文档目录</h2>
+    <p class="home-directory__intro">主页右侧展示我维护的文档入口，顶部导航保留站点级页面与搜索。</p>
   </div>
 
-  <ul class="home-directory__list">
-    {%- for _item in site.data.navigation.header -%}
-      {%- include snippets/get-nav-url.html path=_item.url -%}
-      {%- assign _nav_url = __return -%}
-      {%- include snippets/get-string-from-locale-config.html locale=_item.titles -%}
-      {%- assign _item_title = _item.title | default: __return -%}
-      <li class="home-directory__item">
-        <a href="{{ _nav_url }}">
-          <span class="home-directory__item-title">{{ _item_title }}</span>
-          {%- if _item.description -%}
-            <span class="home-directory__item-description">{{ _item.description }}</span>
-          {%- endif -%}
-        </a>
-      </li>
-    {%- endfor -%}
-  </ul>
+  {%- for _group in _home_directory_groups -%}
+    <section class="home-directory__group">
+      <h3 class="home-directory__group-title">{{ _group.title }}</h3>
+      <ul class="home-directory__list">
+        {%- for _item in _group.children -%}
+          {%- include snippets/get-nav-url.html path=_item.url -%}
+          {%- assign _nav_url = __return -%}
+          <li class="home-directory__item">
+            <a href="{{ _nav_url }}">
+              <span class="home-directory__item-title">{{ _item.title }}</span>
+              {%- if _item.description -%}
+                <span class="home-directory__item-description">{{ _item.description }}</span>
+              {%- endif -%}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </section>
+  {%- endfor -%}
 </section>
 {%- endif -%}

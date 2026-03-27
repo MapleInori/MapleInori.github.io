@@ -8,6 +8,10 @@
     align-items: start;
   }
 
+  .home__column {
+    min-width: 0;
+  }
+
   .home__column--profile,
   .home__column--directory {
     position: sticky;
@@ -79,6 +83,16 @@
 
 .home-directory__header {
   margin-bottom: map-get($spacers, 3);
+}
+
+.home-directory__group + .home-directory__group {
+  margin-top: map-get($spacers, 4);
+}
+
+.home-directory__group-title {
+  margin: 0 0 map-get($spacers, 2);
+  color: $text-color-d;
+  font-size: map-get($base, font-size-base);
 }
 
 .home-directory__list {

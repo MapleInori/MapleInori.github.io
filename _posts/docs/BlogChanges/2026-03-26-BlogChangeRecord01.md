@@ -478,3 +478,113 @@ box-shadow map-get($animation, duration) map-get($animation, timing-function)});
 - 在 `AGENTS.md` 中改用中文明确说明是哪两类符号、会在什么情况下触发 GitHub Pages 构建报错。
 - 规则进一步收紧为：`AGENTS.md`、项目修改记录、`CHANGELOG.md` 这类说明文档统一只用中文描述，不再写这些符号本身。
 - 同时把当前项目修改记录里与这次问题相关的符号表述一并替换成中文，降低后续重复踩坑的概率。
+
+## 2026-03-27（修改 10）
+
+### 恢复首页顶部导航与搜索，并把文档入口改到主页右侧
+
+涉及文件：
+
+- `_layouts/home.html`
+- `_includes/header.html`
+- `_includes/home/directory-panel.html`
+- `_data/navigation.yml`
+- `_sass/layout/_home.scss`
+- `_posts/docs/BlogChanges/2026-03-26-BlogChangeRecord01.md`
+- `CHANGELOG.md`
+
+修改前：
+
+- 首页模板继承的是 `articles`，同时又在模板正文里手动插入了一次 `paginator`，导致首页结构被套错层。
+- 首页 front matter 里还写死了 `hide_navigation: true`，顶部导航因此直接被隐藏。
+- 右侧目录卡片读取的还是顶部 `header` 导航数据，导致“站点导航”和“文档目录”混在一起。
+- 左侧个人信息卡片与右侧目录卡片虽然有模板和样式，但因为首页布局层级不对，实际显示位置也不符合预期。
+
+修改前代码：
+
+`_layouts/home.html`
+
+```yml
+---
+layout: articles
+header:
+  hide_navigation: true
+---
+```
+
+`_includes/home/directory-panel.html`
+
+{% raw %}
+```html
+{%- if site.data.navigation.header -%}
+  ...
+  {%- for _item in site.data.navigation.header -%}
+    ...
+  {%- endfor -%}
+{%- endif -%}
+```
+{% endraw %}
+
+`_data/navigation.yml`
+
+```yml
+header:
+  - UGUI
+  - Unity
+  - Archive
+  - About
+```
+
+修改后：
+
+- 首页模板改为直接继承 `page`，由首页自己控制三栏结构和文章分页，避免重复套用文章列表布局。
+- 去掉首页隐藏导航的设置，顶部导航恢复显示。
+- 顶部导航只保留站点级入口 `Archive`、`About` 和搜索按钮。
+- 新增独立的 `home-directory` 数据组，把 UGUI、Unity、Blog 修改这些文档入口放到主页右侧卡片展示。
+- 给首页列容器补了最小宽度与分组标题样式，保证左右栏在当前栅格布局里能正常显示。
+
+修改后代码：
+
+`_layouts/home.html`
+
+```yml
+---
+layout: page
+type: webpage
+---
+```
+
+`_includes/home/directory-panel.html`
+
+{% raw %}
+```html
+{%- assign _home_directory_groups = site.data.navigation['home-directory'] -%}
+{%- if _home_directory_groups -%}
+  ...
+  {%- for _group in _home_directory_groups -%}
+    {%- for _item in _group.children -%}
+      ...
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endif -%}
+```
+{% endraw %}
+
+`_data/navigation.yml`
+
+```yml
+header:
+  - Archive
+  - About
+
+home-directory:
+  - title: 我的文档
+    children:
+      - title: UGUI
+      - title: Unity
+      - title: Blog 修改
+```
+
+备注：
+
+- 本篇已记录满 `10` 次。后续新的项目修改记录应新建下一篇继续写。

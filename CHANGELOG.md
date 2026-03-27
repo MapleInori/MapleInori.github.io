@@ -1,5 +1,12 @@
 # Change Log
 
+## 2026-03-27
+
+### Changed
+
+- Update `AGENTS.md` so the home right-side navigation stays collection-only and project log entries no longer need to mention `CHANGELOG.md` file updates in their detailed file lists
+- Add `Blog 项目修改记录 02` and link it into the structured change-log sidebar navigation
+
 ## 2026-03-26
 
 ### Added
@@ -20,6 +27,7 @@
 - Exclude `AGENTS.md` from Jekyll build input and escape its inline Liquid examples so repository instructions do not break GitHub Pages builds
 - Escape the remaining inline Liquid examples inside the structured `BlogChanges` log page so the log document itself no longer breaks GitHub Pages builds
 - Rewrite the Liquid build-error guidance in Chinese and remove the related symbol forms from project records to avoid reintroducing the same issue
+- Restore the home page top navigation and search, and move document links into a dedicated right-side home directory panel
 - Move the latest structured project change notes out of the legacy `Blog修改` article into the new `BlogChanges` archive
 - Escape Liquid-style code examples in project log posts so GitHub Pages does not parse them during build
 - Rewrite the home directory card `transition` call to match the older Sass mixin signature used by GitHub Pages

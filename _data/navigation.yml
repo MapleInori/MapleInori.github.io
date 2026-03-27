@@ -1,18 +1,5 @@
 header: # 首页顶部导航栏
   - titles:
-      en      : &EN       UGUI
-      zh-Hans : UGUI
-      zh      : UGUI
-    url: /docs/UGUI/UnityUserInterface
-    description: Unity UI 与 UGUI 相关文档
-  - titles:
-      en      : &EN       Unity
-      zh-Hans : Unity
-      zh      : Unity
-    url: docs/Unity/Level1
-    description: Unity 学习路径与问题记录
-
-  - titles:
       # @start locale config
       en      : &EN       Archive
       en-GB   : *EN
@@ -66,6 +53,19 @@ header: # 首页顶部导航栏
     url: /about.html
     description: 个人简介与学习计划
 
+home-directory:
+  - title: 我的文档
+    children:
+      - title: UGUI
+        url: /docs/UGUI/UnityUserInterface
+        description: Unity UI 与 UGUI 学习与整理
+      - title: Unity
+        url: /docs/Unity/Level1
+        description: Unity 学习路径、问题记录与阶段笔记
+      - title: Blog 修改
+        url: /docs/BlogChanges/ChangeRecord01
+        description: 站点项目结构、样式与构建调整记录
+
 
 
 docs-test:
@@ -89,6 +89,8 @@ docs-blog-changes:
         url: /logs/BlogChange
   - title: 结构化记录
     children:
+      - title: 项目修改记录 02
+        url: /docs/BlogChanges/ChangeRecord02
       - title: 项目修改记录 01
         url: /docs/BlogChanges/ChangeRecord01
 
