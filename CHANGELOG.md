@@ -8,6 +8,7 @@
 - Add `Blog 项目修改记录 02` and link it into the structured change-log sidebar navigation
 - Widen the home page content area and narrow the side columns so the central post list is no longer squeezed by the three-column layout
 - Simplify the home right-side directory to collection names only so it behaves like a compact collection index instead of a verbose card list
+- Restore the home post list rendering and re-enable collection descriptions in the right-side directory panel
 
 ## 2026-03-26
 

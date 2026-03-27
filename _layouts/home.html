@@ -35,6 +35,14 @@ show_title: false
     </aside>
 
     <div class="home__column home__column--feed">
+      <div class="layout--articles">
+        {%- include article-list.html articles=paginator.posts type='item'
+          article_type='BlogPosting'
+          show_cover=false
+          show_excerpt=true
+          show_readmore=true
+          show_info=true -%}
+      </div>
       {%- include paginator.html -%}
     </div>
 

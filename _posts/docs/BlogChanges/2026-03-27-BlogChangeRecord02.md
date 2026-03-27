@@ -120,3 +120,85 @@ full_width: true
 - 主页右侧导航改为只显示合集名字，不再显示每个合集的说明文字。
 - 文档入口数据也同步收敛为“标题加跳转地址”的轻量结构。
 - 这样右侧更接近目录型导航，也更适合后续继续增加合集入口。
+
+## 2026-03-27（修改 4）
+
+### 恢复首页文章列表显示，并把右侧合集描述加回来
+
+涉及文件：
+
+- `_layouts/home.html`
+- `_includes/home/directory-panel.html`
+- `_data/navigation.yml`
+- `_posts/docs/BlogChanges/2026-03-27-BlogChangeRecord02.md`
+
+修改前：
+
+- 首页中间栏只显示文章总数统计和分页按钮，没有实际文章列表。
+- 原因是首页模板里只保留了 `paginator`，但 `paginator` 组件本身只负责统计与翻页，不负责渲染文章条目。
+- 右侧合集导航在上一轮调整中被收成了只有标题，合集描述文字被去掉了。
+
+修改前代码：
+
+`_layouts/home.html`
+
+{% raw %}
+```html
+<div class="home__column home__column--feed">
+  {%- include paginator.html -%}
+</div>
+```
+{% endraw %}
+
+`_includes/home/directory-panel.html`
+
+{% raw %}
+```html
+<li class="home-directory__item">
+  <a href="{{ _nav_url }}">
+    <span class="home-directory__item-title">{{ _item.title }}</span>
+  </a>
+</li>
+```
+{% endraw %}
+
+修改后：
+
+- 首页中间栏重新加入文章列表渲染，恢复为“文章条目 + 翻页”的完整结构。
+- 右侧合集导航恢复说明文字，继续保持“只列合集，不展开单篇”的形式。
+- 这样首页中间栏能正常浏览文章，右侧目录也保留了更清晰的合集说明。
+
+修改后代码：
+
+`_layouts/home.html`
+
+{% raw %}
+```html
+<div class="home__column home__column--feed">
+  <div class="layout--articles">
+    {%- include article-list.html articles=paginator.posts type='item'
+      article_type='BlogPosting'
+      show_cover=false
+      show_excerpt=true
+      show_readmore=true
+      show_info=true -%}
+  </div>
+  {%- include paginator.html -%}
+</div>
+```
+{% endraw %}
+
+`_includes/home/directory-panel.html`
+
+{% raw %}
+```html
+<li class="home-directory__item">
+  <a href="{{ _nav_url }}">
+    <span class="home-directory__item-title">{{ _item.title }}</span>
+    {%- if _item.description -%}
+      <span class="home-directory__item-description">{{ _item.description }}</span>
+    {%- endif -%}
+  </a>
+</li>
+```
+{% endraw %}
