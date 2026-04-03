@@ -155,28 +155,6 @@ docs-UGUI:     # UGUI的文档导航栏
 
 #endregion
 
-
-docs-Csharp:
-  - title: Csharp
-    children:
-      - title: 入门
-        url:   docs/Csharp/Level1
-      - title: 初级
-        url:   docs/Csharp/Level2
-      - title: 中级
-        url:   docs/Csharp/Level3
-      - title: 多看官方文档
-        url: https://learn.microsoft.com/zh-cn/dotnet/csharp/tour-of-csharp/
-  # - title: C# Experience
-  #   children:
-  #     - title: 入门
-  #       url: 
-  # - title: C# In Unity
-  #   children:
-  #     - title: 入门
-  #       url: 
-
-
 docs-Unity:
   - title: Unity
     children:
@@ -184,6 +162,8 @@ docs-Unity:
         url:   docs/Unity/Level1
       - title: 初级
         url:   docs/Unity/Level2
+      - title: 安全区域
+        url:   docs/Unity/SafeArea
       - title: 中级
         url:   docs/Unity/Level3
       - title: 各种问题

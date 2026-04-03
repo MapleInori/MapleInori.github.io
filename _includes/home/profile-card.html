@@ -1,6 +1,7 @@
 {%- assign _profile_avatar = site.home_profile.avatar | default: site.author.avatar | default: '/assets/images/logo/logo.svg' -%}
 {%- assign _profile_name = site.home_profile.nickname | default: site.author.name | default: site.title -%}
 {%- assign _profile_message = site.home_profile.message | default: site.description -%}
+{%- assign _profile_author = site.author -%}
 {%- include snippets/get-nav-url.html path=_profile_avatar -%}
 {%- assign _profile_avatar_url = __return -%}
 
@@ -13,6 +14,11 @@
     <h2 class="home-profile__name">{{ _profile_name }}</h2>
     {%- if _profile_message -%}
       <p class="home-profile__message">{{ _profile_message }}</p>
+    {%- endif -%}
+    {%- if _profile_author and (_profile_author.bilibili or _profile_author.github) -%}
+      <div class="home-profile__links">
+        {%- include author-links.html author=_profile_author -%}
+      </div>
     {%- endif -%}
   </div>
 </section>

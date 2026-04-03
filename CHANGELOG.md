@@ -1,5 +1,12 @@
 # Change Log
 
+## 2026-04-03
+
+### Changed
+
+- Reuse the existing social link component so the home left profile card now shows the same Bilibili and GitHub icons as the footer
+- Add home-profile spacing and centered social-link layout so the new links fit the left sidebar card cleanly
+
 ## 2026-03-27
 
 ### Changed
@@ -11,6 +18,7 @@
 - Restore the home post list rendering and re-enable collection descriptions in the right-side directory panel
 - Expand `AGENTS.md` with a reusable summary of discovered issues, maintenance checks, and self-iteration expectations for future site updates
 - Hide structured `BlogChanges` records from the home post stream while keeping the legacy `Blog修改` article visible there
+- Remove the unused `docs-Csharp` navigation group now that those planned collection pages have been dropped
 
 ## 2026-03-26
 

@@ -81,6 +81,15 @@
   line-height: map-get($base, line-height-lg);
 }
 
+.home-profile__links {
+  margin-top: map-get($spacers, 3);
+
+  .author-links > ul {
+    justify-content: center;
+    row-gap: map-get($spacers, 2);
+  }
+}
+
 .home-directory__header {
   margin-bottom: map-get($spacers, 3);
 }

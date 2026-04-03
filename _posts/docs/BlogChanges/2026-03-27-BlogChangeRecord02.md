@@ -14,6 +14,102 @@ sidebar:
 
 本文件用于记录第 11 至第 20 次站点项目改动。记录满 10 次后，新建下一篇继续记录。
 
+## 2026-04-03（修改 8）
+
+### 把主页底部的 Bilibili 和 GitHub 链接同步显示到左侧个人信息卡片
+
+涉及文件：
+
+- `_includes/home/profile-card.html`
+- `_sass/layout/_home.scss`
+- `_posts/docs/BlogChanges/2026-03-27-BlogChangeRecord02.md`
+
+修改前：
+
+- 主页左侧个人信息卡片只显示头像、站点名、昵称和简介文字。
+- 站点底部已经有 Bilibili 和 GitHub 的图标按钮，并且链接数据来自 `_config.yml` 里的 `author` 字段。
+- 左侧卡片和底部链接没有复用同一套渲染组件，因此左侧看不到这些社交入口。
+
+修改前代码：
+
+`_includes/home/profile-card.html`
+
+{% raw %}
+```html
+<section class="home-profile card card--flat">
+  <div class="home-profile__avatar-wrap">
+    <img class="home-profile__avatar" src="{{ _profile_avatar_url }}" alt="{{ _profile_name }}">
+  </div>
+  <div class="home-profile__content">
+    <p class="home-profile__eyebrow">{{ site.title }}</p>
+    <h2 class="home-profile__name">{{ _profile_name }}</h2>
+    {%- if _profile_message -%}
+      <p class="home-profile__message">{{ _profile_message }}</p>
+    {%- endif -%}
+  </div>
+</section>
+```
+{% endraw %}
+
+`_sass/layout/_home.scss`
+
+```scss
+.home-profile__message,
+.home-directory__intro {
+  margin: 0;
+  color: $text-color-d;
+  line-height: map-get($base, line-height-lg);
+}
+```
+
+修改后：
+
+- 主页左侧个人信息卡片改为直接复用现有的 `author-links.html` 组件。
+- 左侧卡片会读取 `_config.yml` 里已经配置好的 `author.bilibili` 和 `author.github`，显示和底部同源的图标与跳转地址。
+- 同时为左侧卡片补充一小段样式，让社交图标和简介文字之间留出间距，并保持居中显示。
+- 这样后续如果修改作者社交链接，只需要改一处配置，底部和左侧会一起更新。
+
+修改后代码：
+
+`_includes/home/profile-card.html`
+
+{% raw %}
+```html
+{%- assign _profile_author = site.author -%}
+
+<section class="home-profile card card--flat">
+  <div class="home-profile__avatar-wrap">
+    <img class="home-profile__avatar" src="{{ _profile_avatar_url }}" alt="{{ _profile_name }}">
+  </div>
+  <div class="home-profile__content">
+    <p class="home-profile__eyebrow">{{ site.title }}</p>
+    <h2 class="home-profile__name">{{ _profile_name }}</h2>
+    {%- if _profile_message -%}
+      <p class="home-profile__message">{{ _profile_message }}</p>
+    {%- endif -%}
+    {%- if _profile_author and (_profile_author.bilibili or _profile_author.github) -%}
+      <div class="home-profile__links">
+        {%- include author-links.html author=_profile_author -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+```
+{% endraw %}
+
+`_sass/layout/_home.scss`
+
+```scss
+.home-profile__links {
+  margin-top: map-get($spacers, 3);
+
+  .author-links > ul {
+    justify-content: center;
+    row-gap: map-get($spacers, 2);
+  }
+}
+```
+
 ## 2026-03-27（修改 1）
 
 ### 更新协作规则，明确主页右侧导航只保留合集入口
@@ -162,6 +258,27 @@ full_width: true
 </li>
 ```
 {% endraw %}
+
+## 2026-03-27（修改 7）
+
+### 清理已经废弃的 `docs-Csharp` 合集导航
+
+涉及文件：
+
+- `_data/navigation.yml`
+- `_posts/docs/BlogChanges/2026-03-27-BlogChangeRecord02.md`
+
+修改前：
+
+- `_data/navigation.yml` 里仍然保留着 `docs-Csharp` 合集导航。
+- 这一组导航原本指向 `docs/Csharp/Level1`、`Level2`、`Level3` 这些计划中的文档入口，但现在对应文档已经不再继续编写。
+- 仓库里对 `docs-Csharp` 的实际使用只剩这段导航配置本身，其他搜索结果都是历史记录或独立文章链接，不是该合集导航的活跃引用。
+
+修改后：
+
+- 从 `_data/navigation.yml` 中移除了整段 `docs-Csharp` 合集导航配置。
+- 保留了现有的独立 C# 相关文章和历史记录文本，不去动无关内容。
+- 这样导航数据会更干净，也避免后续继续保留一个不会再落地的空合集入口。
 
 ## 2026-03-27（修改 5）
 

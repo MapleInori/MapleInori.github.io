@@ -364,9 +364,3 @@ A: 使用PlayerPrefs、ScriptableObject或持久化单例
 导出时的PlayerSetting
 
 虚拟列表大量物品排列性能优化，对象池
-
-资深Unity方向
-
-技术美术方向
-
-游戏制作人方向
