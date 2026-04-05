@@ -4,6 +4,7 @@
 
 ### Changed
 
+- Remove all remaining active LeanCloud and Google Analytics integration paths from the site runtime, including unused provider branches, SDK source entries, and obsolete provider files
 - Replace LeanCloud pageview integration with GoatCounter by switching the pageview provider to `custom`, adding GoatCounter counting scripts, and loading per-article counts from GoatCounter’s counter endpoint
 - Increase the single-article right-side table-of-contents font sizes by 20 percent and round the new values to two decimals
 - Replace the fixed article aside width with a responsive min/preferred/max clamp while preserving the existing small-screen hide behavior and right-edge spacing

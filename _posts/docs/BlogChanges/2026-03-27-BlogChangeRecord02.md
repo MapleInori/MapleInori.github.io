@@ -268,6 +268,119 @@ pageview:
 ```
 {% endraw %}
 
+## 2026-04-06（修改 11）
+
+### 清理站点中剩余的 LeanCloud 和 Google Analytics 运行路径
+
+涉及文件：
+
+- `_config.yml`
+- `_data/variables.yml`
+- `_includes/analytics.html`
+- `_includes/comments.html`
+- `_includes/pageview.html`
+- `_includes/scripts/variables.html`
+- `_includes/analytics-providers/google.html`
+- `_includes/comments-providers/valine.html`
+- `_includes/pageview-providers/leancloud/home.html`
+- `_includes/pageview-providers/leancloud/post.html`
+- `_includes/pageview-providers/leancloud/leancloud.js`
+- `_posts/docs/BlogChanges/2026-03-27-BlogChangeRecord02.md`
+
+修改前：
+
+- 虽然阅读量已经切换到 GoatCounter，但站点里仍然保留了 LeanCloud 的 pageview provider 文件和分支判断。
+- 评论系统分支里仍然保留 `valine`，它依赖 LeanCloud SDK。
+- `_data/variables.yml` 和 `scripts/variables.html` 里还保留着 `leancloud_js_sdk` 这个脚本源变量。
+- Google Analytics 虽然不再需要，但 `_config.yml`、`analytics.html` 和 `analytics-providers/google.html` 仍然保留着整套可运行路径。
+
+修改前代码：
+
+`_includes/analytics.html`
+
+{% raw %}
+```html
+{%- if jekyll.environment != 'development' -%}
+  {%- if site.analytics.provider == 'google' -%}
+    {%- include analytics-providers/google.html -%}
+  {%- elsif site.analytics.provider == 'custom' -%}
+    {%- include analytics-providers/custom.html -%}
+  {%- endif -%}
+{%- endif -%}
+```
+{% endraw %}
+
+`_includes/pageview.html`
+
+{% raw %}
+```html
+{%- if site.pageview.provider == 'leancloud' -%}
+  {%- include pageview-providers/leancloud/home.html -%}
+{%- elsif site.pageview.provider == 'custom' -%}
+  {%- include pageview-providers/custom/home.html -%}
+{%- endif -%}
+```
+{% endraw %}
+
+`_includes/comments.html`
+
+{% raw %}
+```html
+{%- elsif site.comments.provider == 'valine' -%}
+  {%- include comments-providers/valine.html -%}
+```
+{% endraw %}
+
+修改后：
+
+- 从 `_config.yml` 中移除了 LeanCloud pageview 配置块，并把 analytics provider 设为 `false`。
+- 移除了 `analytics.html` 里对 Google Analytics 的分支判断，只保留 `custom`。
+- 移除了 `comments.html` 里对 `valine` 的分支判断，避免继续保留 LeanCloud 依赖入口。
+- 移除了 `pageview.html` 里对 LeanCloud provider 的分支判断，只保留 GoatCounter 所在的 `custom`。
+- 从脚本变量和 CDN 源里删除了 `leancloud_js_sdk`。
+- 删除了已经废弃的运行文件：Google Analytics provider、Valine provider、LeanCloud pageview provider 整个目录。
+- 这样站点前台运行时将不再加载或依赖 LeanCloud、Valine、Google Analytics 的任何实际代码路径。
+
+修改后代码：
+
+`_includes/analytics.html`
+
+{% raw %}
+```html
+{%- if jekyll.environment != 'development' -%}
+  {%- if site.analytics.provider == 'custom' -%}
+    {%- include analytics-providers/custom.html -%}
+  {%- endif -%}
+{%- endif -%}
+```
+{% endraw %}
+
+`_includes/pageview.html`
+
+{% raw %}
+```html
+{%- if site.pageview.provider == 'custom' -%}
+  {%- include pageview-providers/custom/home.html -%}
+{%- endif -%}
+```
+{% endraw %}
+
+`_includes/comments.html`
+
+{% raw %}
+```html
+{%- if jekyll.environment != 'development' -%}
+  {%- if site.comments.provider == 'disqus' -%}
+    {%- include comments-providers/disqus.html -%}
+  {%- elsif site.comments.provider == 'gitalk' -%}
+    {%- include comments-providers/gitalk.html -%}
+  {%- elsif site.comments.provider == 'custom' -%}
+    {%- include comments-providers/custom.html -%}
+  {%- endif -%}
+{%- endif -%}
+```
+{% endraw %}
+
 ## 2026-04-03（修改 8）
 
 ### 把主页底部的 Bilibili 和 GitHub 链接同步显示到左侧个人信息卡片

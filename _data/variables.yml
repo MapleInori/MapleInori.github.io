@@ -43,7 +43,6 @@ default:
 #   bootcdn:
 #     font_awesome: 'https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css'
 #     jquery: 'https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js'
-#     leancloud_js_sdk: '//cdn.jsdelivr.net/npm/leancloud-storage@3.13.2/dist/av-min.js'
 #     chart: 'https://cdn.bootcss.com/Chart.js/2.7.2/Chart.bundle.min.js'
 #     gitalk:
 #       js: 'https://cdn.bootcss.com/gitalk/1.2.2/gitalk.min.js'
@@ -54,7 +53,6 @@ default:
 #   unpkg:
 #     font_awesome: 'https://use.fontawesome.com/releases/v5.15.1/css/all.css'
 #     jquery: 'https://unpkg.com/jquery@3.3.1/dist/jquery.min.js'
-#     leancloud_js_sdk: '//cdn.jsdelivr.net/npm/leancloud-storage@3.13.2/dist/av-min.js'
 #     chart: 'https://unpkg.com/chart.js@2.7.2/dist/Chart.min.js'
 #     gitalk:
 #       js: 'https://unpkg.com/gitalk@1.2.2/dist/gitalk.min.js'
@@ -66,7 +64,6 @@ sources:
   bootcdn:
     font_awesome: 'https://cdn.bootcdn.net/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'
     jquery: 'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js'
-    leancloud_js_sdk: 'https://cdn.jsdelivr.net/npm/leancloud-storage@4.7.0/dist/av-min.js'
     chart: 'https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js'
     gitalk:
       js: 'https://cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js'
@@ -77,7 +74,6 @@ sources:
   unpkg:
     font_awesome: 'https://unpkg.com/font-awesome@6.0.0-beta3/css/all.min.css'
     jquery: 'https://unpkg.com/jquery@3.6.0/dist/jquery.min.js'
-    leancloud_js_sdk: 'https://cdn.jsdelivr.net/npm/leancloud-storage@4.7.0/dist/av-min.js'
     chart: 'https://unpkg.com/chart.js@3.7.0/dist/chart.min.js'
     gitalk:
       js: 'https://unpkg.com/gitalk@1.7.0/dist/gitalk.min.js'
