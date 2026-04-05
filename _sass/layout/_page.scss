@@ -1,3 +1,9 @@
+// 单篇文章右侧目录宽度：
+// 最小 15rem（240px），中间随视口宽度变化，最大 18.75rem（300px）。
+// 右侧额外预留一段间距，避免目录贴到浏览器最右边。
+$page-aside-width: clamp(15rem, 18vw, 18.75rem);
+$page-aside-right-gap: 1.25rem;
+
 body,
 html,
 .root,
@@ -26,7 +32,7 @@ html,
     display: none;
     & > aside {
       position: absolute;
-      width: map-get($layout, aside-width);
+      width: calc(#{$page-aside-width} + #{$page-aside-right-gap});
       @include overflow(hidden);
     }
   }
@@ -63,8 +69,8 @@ html,
     padding: map-get($spacers, 5) 0 map-get($spacers, 3) map-get($spacers, 5);
     max-height: 80vh; // 限制最大高度为视口高度的 80%
     overflow-y: auto; // 启用垂直滚动条
-    width: 300px; // 增加目录栏宽度
-    margin-right: 20px; // 让目录栏距离右边更近
+    width: $page-aside-width; // 目录本体宽度根据视口在最小值和最大值之间自适应
+    margin-right: $page-aside-right-gap; // 保持目录与画面最右侧之间有固定留白
     word-wrap: break-word; // 自动换行
     word-break: break-word; // 防止长单词溢出
   }
@@ -113,7 +119,7 @@ html,
   .col-aside {
     position: relative;
     display: block;
-    width: map-get($layout, aside-width);
+    width: calc(#{$page-aside-width} + #{$page-aside-right-gap});
     & > aside {
       &.fixed {
         position: fixed;

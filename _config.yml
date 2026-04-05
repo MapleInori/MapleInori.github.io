@@ -154,13 +154,17 @@ comments:
 ## => Pageview
 ##############################
 pageview:
-  provider: leancloud # false (default), "leancloud", "custom"
+  provider: custom # false (default), "leancloud", "custom"
 
   ## Leancloud
   leancloud:
     app_id    : AAGCB3kl8AyNMbroiF8T4EeT-gzGzoHsz # LeanCloud App id
     app_key   : HtZ0ifnFtijNTqUKJIIojFVE # LeanCloud App key
     app_class : Counter # LeanCloud App class
+
+  ## GoatCounter
+  goatcounter:
+    count_url: https://mapleinori.goatcounter.com/count
 
 
 ## => Search

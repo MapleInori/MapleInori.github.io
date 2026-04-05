@@ -14,6 +14,260 @@ sidebar:
 
 本文件用于记录第 11 至第 20 次站点项目改动。记录满 10 次后，新建下一篇继续记录。
 
+## 2026-04-06（修改 9）
+
+### 调整单篇文章右侧目录字号，并把目录宽度改为最小值到最大值之间自适应
+
+涉及文件：
+
+- `_sass/layout/_page.scss`
+- `_sass/common/components/_toc.scss`
+- `_posts/docs/BlogChanges/2026-03-27-BlogChangeRecord02.md`
+
+修改前：
+
+- 单篇文章右侧目录的本体宽度在 `_sass/layout/_page.scss` 中被直接写死为 `300px`。
+- 右侧目录所在列和父 `aside` 容器仍在使用 `map-get($layout, aside-width)`，也就是主题默认的固定宽度。
+- 目录文字大小沿用主题默认值，其中普通条目是 `0.7rem`，一级条目是 `0.85rem`。
+- 这种写法虽然能用，但宽度不够灵活，浏览器变宽或变窄时目录区域不会在一个合理范围内自适应。
+
+修改前代码：
+
+`_sass/layout/_page.scss`
+
+```scss
+.page__main {
+  .col-aside {
+    & > aside {
+      width: map-get($layout, aside-width);
+    }
+  }
+}
+
+.page__aside {
+  .toc-aside {
+    width: 300px;
+    margin-right: 20px;
+  }
+}
+
+.has-aside {
+  .col-aside {
+    width: map-get($layout, aside-width);
+  }
+}
+```
+
+`_sass/common/components/_toc.scss`
+
+```scss
+.toc-h2,
+.toc-h3,
+.toc-h4,
+.toc-h5,
+.toc-h6 {
+  &, a {
+    font-size: map-get($base, font-size-xs);
+  }
+}
+
+.toc-h1 {
+  &, a {
+    font-size: map-get($base, font-size-sm);
+  }
+}
+```
+
+修改后：
+
+- 普通目录条目的字号从 `0.70rem` 增加 `20%` 到 `0.84rem`。
+- 一级目录条目的字号从 `0.85rem` 增加 `20%` 到 `1.02rem`。
+- 右侧目录宽度改为 `clamp(15rem, 18vw, 18.75rem)`，也就是最小 `240px`、最大 `300px`，中间随浏览器宽度变化。
+- 右侧仍保留 `1.25rem` 的留白，不会在最大宽度时贴到浏览器最右边。
+- 原本在较小屏幕下隐藏右侧目录的逻辑保持不变，没有动断点和隐藏规则。
+
+修改后代码：
+
+`_sass/layout/_page.scss`
+
+```scss
+$page-aside-width: clamp(15rem, 18vw, 18.75rem);
+$page-aside-right-gap: 1.25rem;
+
+.page__main {
+  .col-aside {
+    & > aside {
+      width: calc(#{$page-aside-width} + #{$page-aside-right-gap});
+    }
+  }
+}
+
+.page__aside {
+  .toc-aside {
+    width: $page-aside-width;
+    margin-right: $page-aside-right-gap;
+  }
+}
+
+.has-aside {
+  .col-aside {
+    width: calc(#{$page-aside-width} + #{$page-aside-right-gap});
+  }
+}
+```
+
+`_sass/common/components/_toc.scss`
+
+```scss
+.toc-h2,
+.toc-h3,
+.toc-h4,
+.toc-h5,
+.toc-h6 {
+  &, a {
+    font-size: 0.84rem;
+  }
+}
+
+.toc-h1 {
+  &, a {
+    font-size: 1.02rem;
+  }
+}
+```
+
+## 2026-04-06（修改 10）
+
+### 把站点阅读量统计从 LeanCloud 切换到 GoatCounter
+
+涉及文件：
+
+- `_config.yml`
+- `_includes/article-info.html`
+- `_includes/pageview-providers/custom/home.html`
+- `_includes/pageview-providers/custom/post.html`
+- `_posts/docs/BlogChanges/2026-03-27-BlogChangeRecord02.md`
+
+修改前：
+
+- 站点的阅读量统计仍然使用 LeanCloud。
+- `_config.yml` 中 `pageview.provider` 设置为 `leancloud`，页面加载时会走 `pageview-providers/leancloud` 下的脚本。
+- 页面上显示阅读量的节点只带有 `data-page-key`，这是 LeanCloud 方案里按文章 key 查数时使用的字段。
+- `custom/home.html` 和 `custom/post.html` 仍然是空模板，尚未接入 GoatCounter。
+
+修改前代码：
+
+`_config.yml`
+
+```yml
+pageview:
+  provider: leancloud
+
+  leancloud:
+    app_id    : AAGCB3kl8AyNMbroiF8T4EeT-gzGzoHsz
+    app_key   : HtZ0ifnFtijNTqUKJIIojFVE
+    app_class : Counter
+```
+
+`_includes/article-info.html`
+
+{% raw %}
+```html
+<li><i class="far fa-eye"></i> <span class="js-pageview" data-page-key="{{ include.article.key }}">0</span> {{ _locale_views }}</li>
+```
+{% endraw %}
+
+`_includes/pageview-providers/custom/home.html`
+
+```html
+<!-- start custom pageview snippet (for Home layout) -->
+
+<!-- end custom pageview snippet (for Home layout) -->
+```
+
+`_includes/pageview-providers/custom/post.html`
+
+```html
+<!-- start custom pageview snippet (for the post) -->
+
+<!-- end custom pageview snippet (for the post) -->
+```
+
+修改后：
+
+- 把 `pageview.provider` 改为 `custom`，并在配置里增加 GoatCounter 的 `count_url`。
+- 页面上显示阅读量的节点新增 `data-page-path`，后续按文章 URL 路径向 GoatCounter 请求统计数字。
+- 在 `custom/home.html` 中接入 GoatCounter 的统计脚本，并为首页文章列表中的每个阅读量节点请求对应路径的计数。
+- 在 `custom/post.html` 中接入 GoatCounter 的统计脚本，并为当前文章页面读取它自己的统计数字。
+- 这样保留了你现在页面里“显示阅读量”的用法，只是底层存储和计数来源从 LeanCloud 改成了 GoatCounter。
+
+修改后代码：
+
+`_config.yml`
+
+```yml
+pageview:
+  provider: custom
+
+  leancloud:
+    app_id    : AAGCB3kl8AyNMbroiF8T4EeT-gzGzoHsz
+    app_key   : HtZ0ifnFtijNTqUKJIIojFVE
+    app_class : Counter
+
+  goatcounter:
+    count_url: https://mapleinori.goatcounter.com/count
+```
+
+`_includes/article-info.html`
+
+{% raw %}
+```html
+<li><i class="far fa-eye"></i> <span class="js-pageview" data-page-key="{{ include.article.key }}" data-page-path="{{ include.article.url }}">0</span> {{ _locale_views }}</li>
+```
+{% endraw %}
+
+`_includes/pageview-providers/custom/home.html`
+
+{% raw %}
+```html
+{%- assign _GOATCOUNTER_COUNT_URL = site.pageview.goatcounter.count_url -%}
+{%- assign _GOATCOUNTER_COUNTER_URL = _GOATCOUNTER_COUNT_URL | replace: '/count', '/counter/' -%}
+
+<script>
+  window.goatcounter = window.goatcounter || {};
+</script>
+<script data-goatcounter="{{ _GOATCOUNTER_COUNT_URL }}"
+        async src="//gc.zgo.at/count.js"></script>
+<script>
+  (function() {
+    var counterBase = '{{ _GOATCOUNTER_COUNTER_URL }}';
+    // 读取所有带 data-page-path 的阅读量节点，并请求对应路径的 GoatCounter 计数
+  })();
+</script>
+```
+{% endraw %}
+
+`_includes/pageview-providers/custom/post.html`
+
+{% raw %}
+```html
+{%- assign _GOATCOUNTER_COUNT_URL = site.pageview.goatcounter.count_url -%}
+{%- assign _GOATCOUNTER_COUNTER_URL = _GOATCOUNTER_COUNT_URL | replace: '/count', '/counter/' -%}
+
+<script>
+  window.goatcounter = window.goatcounter || {};
+</script>
+<script data-goatcounter="{{ _GOATCOUNTER_COUNT_URL }}"
+        async src="//gc.zgo.at/count.js"></script>
+<script>
+  (function() {
+    var counterBase = '{{ _GOATCOUNTER_COUNTER_URL }}';
+    // 请求当前文章路径对应的 GoatCounter 计数，并写回页面上的阅读量节点
+  })();
+</script>
+```
+{% endraw %}
+
 ## 2026-04-03（修改 8）
 
 ### 把主页底部的 Bilibili 和 GitHub 链接同步显示到左侧个人信息卡片

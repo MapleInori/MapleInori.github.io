@@ -1,5 +1,13 @@
 # Change Log
 
+## 2026-04-06
+
+### Changed
+
+- Replace LeanCloud pageview integration with GoatCounter by switching the pageview provider to `custom`, adding GoatCounter counting scripts, and loading per-article counts from GoatCounter’s counter endpoint
+- Increase the single-article right-side table-of-contents font sizes by 20 percent and round the new values to two decimals
+- Replace the fixed article aside width with a responsive min/preferred/max clamp while preserving the existing small-screen hide behavior and right-edge spacing
+
 ## 2026-04-03
 
 ### Changed

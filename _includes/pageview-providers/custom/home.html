@@ -1,3 +1,66 @@
 <!-- start custom pageview snippet (for Home layout) -->
+{%- assign _GOATCOUNTER_COUNT_URL = site.pageview.goatcounter.count_url -%}
+{%- assign _GOATCOUNTER_COUNTER_URL = _GOATCOUNTER_COUNT_URL | replace: '/count', '/counter/' -%}
 
+{%- if _GOATCOUNTER_COUNT_URL -%}
+<script>
+  window.goatcounter = window.goatcounter || {};
+</script>
+<script data-goatcounter="{{ _GOATCOUNTER_COUNT_URL }}"
+        async src="//gc.zgo.at/count.js"></script>
+<script>
+  (function() {
+    var counterBase = '{{ _GOATCOUNTER_COUNTER_URL }}';
+
+    function setCount(path, count) {
+      var nodes = document.querySelectorAll('.js-pageview[data-page-path]');
+      for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i].getAttribute('data-page-path') === path) {
+          nodes[i].textContent = count;
+        }
+      }
+    }
+
+    function requestCount(path) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', counterBase + encodeURIComponent(path) + '.json', true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) {
+          return;
+        }
+
+        if (xhr.status >= 200 && xhr.status < 300) {
+          try {
+            var data = JSON.parse(xhr.responseText);
+            if (data && typeof data.count !== 'undefined') {
+              setCount(path, data.count);
+            }
+          } catch (error) {
+          }
+        }
+      };
+      xhr.send();
+    }
+
+    function loadCounts() {
+      var nodes = document.querySelectorAll('.js-pageview[data-page-path]');
+      var requested = {};
+
+      for (var i = 0; i < nodes.length; i++) {
+        var path = nodes[i].getAttribute('data-page-path');
+        if (path && !requested[path]) {
+          requested[path] = true;
+          requestCount(path);
+        }
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadCounts);
+    } else {
+      loadCounts();
+    }
+  })();
+</script>
+{%- endif -%}
 <!-- end custom pageview snippet (for Home layout) -->
