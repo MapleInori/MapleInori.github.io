@@ -27,12 +27,7 @@ key: page-about
 ---
 学，学，学不完——。
 
-## **26年重学一遍理论教程，过一遍写过的文档，再实践一遍实践教程**
-
-每天一道Leetcode，不用写文档，争取多刷记脑子里。
-
-域名到2026.01.19
-
+域名到期啦，懒得搞啦。
 
 ## 理论教程
 
@@ -73,6 +68,10 @@ key: page-about
 [Unity里的UV到底是什么 - cancantrbl - 博客园](https://www.cnblogs.com/cancantrbl/p/14766502.html)，
 
 [C#四部曲-03面向对象篇-Unity游戏开发编程学习_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1vf4y1f7AM/?vd_source=537e5c45199daf497aa2d8f0795c4a50)，
+
+[【游戏开发系列课程】第一季](https://www.bilibili.com/video/BV1M44y177Si?spm_id_from=333.788.player.switch&vd_source=537e5c45199daf497aa2d8f0795c4a50)，
+
+[Unity就业课-Unity入门](https://www.bilibili.com/video/BV1SU4y1D7tP)，
 
 ## 案例教程
 
@@ -131,6 +130,14 @@ key: page-about
 
 [QFramework 游戏开发：类小行星 | Unity 中文课堂](https://learn.u3d.cn/tutorial/x-teroids)，挺好，值得一看，不过我没用QF，想自己改改加强学习，过程中碰到不少问题和bug。
 
+[【Unity教程搬运】10 分钟内制作曲奇点击器（Unity 教程）](https://www.bilibili.com/video/BV1Gw411H7DP/?spm_id_from=0.0.favlist.content.click&vd_source=537e5c45199daf497aa2d8f0795c4a50),
+
+[【Unity教程搬运】如何在Unity中制作2048（完整教程）](https://www.bilibili.com/video/BV1y8411f7xt/?spm_id_from=0.0.favlist.content.click&vd_source=537e5c45199daf497aa2d8f0795c4a50),
+
+[使用Unity开发一个完整的割草游戏-飞刀战神-第一季](https://www.bilibili.com/video/BV1T56GYWEGf)，
+
+[【Unity教程】在Unity中制作水果忍者](https://www.bilibili.com/video/BV1Lv4ZeJEih?spm_id_from=333.788.player.switch&vd_source=537e5c45199daf497aa2d8f0795c4a50&p=3)，
+
 ## 功能性教程
 
 [【Unity教程搬运】在Unity教程中掷物理骰子_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1CpNceyEuB/?spm_id_from=..search-card.all.click&vd_source=537e5c45199daf497aa2d8f0795c4a50)，丢骰子
@@ -142,3 +149,7 @@ key: page-about
 [【Unity2D入门教程】7.移动平台_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1d44y1F7RM/?spm_id_from=333.1387.favlist.content.click&vd_source=537e5c45199daf497aa2d8f0795c4a50)，
 
 [常规虚拟摇杆怎么做？游戏中的Joystick在Unity引擎中的使用例子和实现方式，一个视频讲清楚_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1gsDrYvENy/?spm_id_from=..search-card.all.click&vd_source=537e5c45199daf497aa2d8f0795c4a50)，
+
+[简易关卡解锁 | Unity 中文课堂](https://learn.u3d.cn/tutorial/levels-onecredit)，
+
+[【夜影】连我都能看懂的unity任务系统教程](https://www.bilibili.com/video/BV1YZ4y1n7tN/)，一般。
