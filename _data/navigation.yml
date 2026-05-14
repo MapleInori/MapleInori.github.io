@@ -158,17 +158,15 @@ docs-UGUI:     # UGUI的文档导航栏
 docs-Unity:
   - title: Unity
     children:
-      - title: 入门
-        url:   docs/Unity/Level1
-      - title: 初级
-        url:   docs/Unity/Level2
+      - title: 从零开始的Unity魔法学堂
+        url:   docs/Unity/UnityMagicLesson
+      - title: Unity入门
+        url:   docs/Unity/GettingStarted
       - title: 安全区域
         url:   docs/Unity/SafeArea
       - title: 背包图标 Pivot 偏移与自适应缩放
         url:   docs/Unity/InventoryIconPivot
       - title: 背包道具信息弹窗实现
         url:   docs/Unity/InventoryPopup
-      - title: 中级
-        url:   docs/Unity/Level3
       - title: 各种问题
         url:   docs/Unity/Question

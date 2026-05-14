@@ -1,9 +1,9 @@
 ---
 layout: article
-title: UnityLevel1
+title: 从零开始的Unity魔法学堂
 tags: ["Unity"]
 key: 20250513Unity
-permalink: docs/Unity/Level1
+permalink: docs/Unity/UnityMagicLesson
 aside:
   toc: true
 sidebar:
