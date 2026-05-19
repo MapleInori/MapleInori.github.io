@@ -188,6 +188,7 @@ exclude:
   - package.json
   - /docs
   - /_posts/image
+  - /_posts/2025Year/image
   - /_posts/docs/UGUI/image
   - /node_modules
   - /screenshots

@@ -1,5 +1,14 @@
 # Change Log
 
+## 2026-05-19
+
+### Changed
+
+- Move 2025 posts and their sibling image assets under `_posts/2025Year/`
+- Keep the default `date` permalink style so `_posts/2025Year/` may participate in generated article URLs
+- Update article image rewriting so posts in year folders resolve sibling `image/` assets from the matching source folder
+- Keep `_posts/image` excluded as the default root-level pasted-image folder while also excluding `_posts/2025Year/image`
+
 ## 2026-04-06
 
 ### Changed
