@@ -70,3 +70,49 @@ permalink   : date
 newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/${postAssetRoot}/${src}?raw=true`;
 ```
 {% endraw %}
+
+## 2026-05-19（修改 22）
+
+### 修复带 docs permalink 的根层级文章图片路径误判
+
+涉及文件：
+
+- `_layouts/article.html`
+- `AGENTS.md`
+- `CHANGELOG.md`
+- `_posts/docs/BlogChanges/2026-05-19-BlogChangeRecord03.md`
+
+修改前：
+
+- 文章页脚本用浏览器公开路径判断是否属于 `docs` 文档。
+- 像 `_posts/2026-04-27-Unity中图片占用.md` 这种源码位于 `_posts` 根层级、但 permalink 是 `docs/Unity/ImageSizeInUnity` 的文章，会被误判为 `_posts/docs/Unity/` 下的文章。
+- 因此正文里的 `image/2026-04-27-Unity中图片占用/1779192573093.png` 会被拼成 `_posts/docs/Unity/image/...`，而真实图片在 `_posts/image/...`。
+
+修改前代码：
+
+{% raw %}
+```js
+const currentPath = window.location.pathname;
+const basePath = currentPath.substring(0, currentPath.lastIndexOf('/'));
+const isDocs = basePath.includes('/docs/');
+```
+{% endraw %}
+
+修改后：
+
+- 图片根目录改为根据 Jekyll 提供的 `page.path` 计算，也就是按 Markdown 源文件所在目录解析。
+- `_posts/2026-04-27-Unity中图片占用.md` 会解析到 `_posts/image/...`。
+- `_posts/2025Year/2025-01-08-first_test.md` 会解析到 `_posts/2025Year/image/...`。
+- `_posts/docs/UGUI/2025-04-23-BasicLayout.md` 会解析到 `_posts/docs/UGUI/image/...`。
+- 这样公开 URL、permalink、导航路径如何变化，都不会影响文章内同层 `image/` 目录的图片解析。
+
+修改后代码：
+
+{% raw %}
+```js
+const postSourcePath = "{{ page.path }}";
+const postAssetRoot = postSourcePath.includes("/")
+  ? postSourcePath.substring(0, postSourcePath.lastIndexOf("/"))
+  : "_posts";
+```
+{% endraw %}

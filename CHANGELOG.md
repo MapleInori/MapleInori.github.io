@@ -8,6 +8,7 @@
 - Keep the default `date` permalink style so `_posts/2025Year/` may participate in generated article URLs
 - Update article image rewriting so posts in year folders resolve sibling `image/` assets from the matching source folder
 - Keep `_posts/image` excluded as the default root-level pasted-image folder while also excluding `_posts/2025Year/image`
+- Resolve article `image/` assets from the Markdown source folder instead of the public permalink path
 
 ## 2026-04-06
 

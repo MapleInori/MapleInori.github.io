@@ -27,6 +27,7 @@
 - 如果必须在技术文档中展示真实 Liquid 代码，只能放进代码块，并在代码块外层使用 `raw` / `endraw` 包裹。
 - 主题 SCSS 的 mixin 调用尽量沿用仓库现有写法；如果是 `transition` 这类主题封装过的 mixin，优先使用主题已经兼容的参数形式。
 - `_posts/image`、`_posts/2025Year/image` 与 `_posts/docs/UGUI/image` 已加入构建排除列表，不应依赖 Jekyll 在发布时复制这些目录下的图片。
+- 文章内相对图片路径 `image/...` 必须按 Markdown 源文件所在目录解析，不能按公开 URL 或 `permalink` 推断；带 `docs/Unity/...` permalink 的根层级文章仍应读取 `_posts/image/...`。
 - 需要长期参与站点构建或页面渲染的公共资源，优先放在未被排除的站点资源目录中，例如 `assets/`。
 
 ## 哪些改动需要记录到 `CHANGELOG.md`

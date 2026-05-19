@@ -39,32 +39,18 @@ type: article
   {%- include scripts/article.js -%}
 </script> -->
 <script>
-  {%- assign _post_asset_root = '_posts' -%}
-  {%- if page.path contains '_posts/2025Year/' -%}
-    {%- assign _post_asset_root = '_posts/2025Year' -%}
-  {%- endif -%}
-
   // 确保页面加载完成后执行
   document.addEventListener("DOMContentLoaded", function() {
     const images = document.querySelectorAll('img');
-    const currentPath = window.location.pathname; // 获取当前文章的路径
-    const basePath = currentPath.substring(0, currentPath.lastIndexOf('/')); // 获取文章所在目录
-    const isDocs = basePath.includes('/docs/'); // 判断是否在 docs 文件夹下
-    const postAssetRoot = "{{ _post_asset_root }}";
+    const postSourcePath = "{{ page.path }}";
+    const postAssetRoot = postSourcePath.includes("/")
+      ? postSourcePath.substring(0, postSourcePath.lastIndexOf("/"))
+      : "_posts";
 
     images.forEach(img => {
       const src = img.getAttribute('src');  // src 是图片的本地相对路径，与文档同级 image/xxxx.png
       if (src && src.startsWith('image/')) {
-        let newSrc;
-        if (isDocs) {
-          // 如果文章在 docs 文件夹下，拼接 docs 的图片路径
-          const docsBasePath = basePath.split('/').slice(0, 3).join('/'); // 提取 /docs/UGUI 部分
-          newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts${docsBasePath}/${src}?raw=true`;
-          // newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/_posts${docsBasePath}/${src}?raw=true`;
-        } else {
-          // 如果文章在 post 根目录下，拼接普通的图片路径
-          newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/${postAssetRoot}/${src}?raw=true`;
-        }
+        const newSrc = `https://cdn.jsdelivr.net/gh/MapleInori/MapleInori.github.io/${postAssetRoot}/${src}?raw=true`;
         img.setAttribute('src', newSrc);
         console.log("新图片路径 (newSrc):", newSrc); // 输出拼接后的图片路径，便于调试
       }
