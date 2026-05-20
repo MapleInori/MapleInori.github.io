@@ -164,6 +164,8 @@ docs-Unity:
         url:   docs/Unity/UnityMagicLesson
       - title: Unity入门
         url:   docs/Unity/GettingStarted
+      - title: 热更新开发1
+        url:   docs/Unity/HotUpdate1
       - title: 安全区域
         url:   docs/Unity/SafeArea
       - title: 背包图标 Pivot 偏移与自适应缩放
