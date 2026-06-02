@@ -70,7 +70,7 @@ Language server initialized
 
 - `dotnet.preferCSharpExtension`：当前 workspace 优先使用普通 C# 扩展，避免 C# Dev Kit 接管 Unity 传统项目。
 
-![1779812672198](https://file+.vscode-resource.vscode-cdn.net/d%3A/_MapleInori/MapleInori%20blog/MapleInori.github.io/_posts/image/2026-05-27-VsC/1779812672198.png)
+![1779812672198](https://file+.vscode-resource.vscode-cdn.net/d%3A/_MapleInori/MapleInori%20blog/MapleInori.github.io/_posts/image/2026-05-27-VSCode_Unity_CSharp加载问题记录/1779812672198.png)
 
 其实VS Code 右下角会弹提示，可能没注意随手关了，大意是问这个 workspace 是否要使用 C# 扩展。点使用 C# 扩展后，它会自动创建 `.vscode/settings.json`，并写入：
 

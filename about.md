@@ -61,7 +61,7 @@ key: page-about
 
 [C# 知识体系构建（第二版） | Unity 中文课堂](https://learn.u3d.cn/tutorial/csharp_map_build?chapterId=63562b27edca72001f21d0de#61e8001a3b090c0020dee4c0)，不像是面向新手的，对于我来说比较吃力，能看懂，但有点折磨，应该把上边四部曲学完再看比较好，主要是这个教程里提到的东西都得用过，没用过就难以跟得上了
 
-[从零开始的Unity魔法学堂｜更新 Timeline | Unity 中文课堂](https://learn.u3d.cn/tutorial/MagicCollege)，挺好的，建议新手反复学习并在此基础上扩充
+[从零开始的Unity魔法学堂｜更新 Timeline | Unity 中文课堂](https://learn.u3d.cn/tutorial/MagicCollege)，挺好的，建议有兴趣的新手学习并在此基础上扩充
 
 [Unity3D性能优化《UGUI的Drawcall合批优化》_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1S7BBYbEkB/?spm_id_from=..top_right_bar_window_history.content.click&vd_source=537e5c45199daf497aa2d8f0795c4a50)，
 
