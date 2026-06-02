@@ -164,7 +164,7 @@ docs-Unity:
         url:   docs/Unity/UnityMagicLesson
       - title: Unity入门
         url:   docs/Unity/GettingStarted
-      - title: 热更新开发1-AB包-异步加载
+      - title: 热更新开发1-Unity编辑器扩展与AssetBundle
         url:   docs/Unity/HotUpdate1
       - title: 热更新开发2-Lua语言
         url:   docs/Unity/HotUpdate2
