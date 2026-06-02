@@ -116,3 +116,87 @@ const postAssetRoot = postSourcePath.includes("/")
   : "_posts";
 ```
 {% endraw %}
+
+## 2026-06-02（修改 23）
+
+### 优化主页响应式布局，并扩大文档正文宽度
+
+涉及文件：
+
+- `_sass/layout/_home.scss`
+- `_sass/layout/_page.scss`
+- `AGENTS.md`
+- `_posts/docs/BlogChanges/2026-05-19-BlogChangeRecord03.md`
+
+修改前：
+
+- 主页宽屏使用三栏布局：左侧个人简介、中间文章列表、右侧合集目录。
+- 当视口宽度小于 `1024px` 时，右侧合集目录会直接移动到文章列表下方；当视口宽度小于 `500px` 时，三栏才改为单栏。
+- 左右栏宽度、卡片内边距和头像尺寸散落在样式规则中，后续微调时不容易快速找到入口。
+- 带合集导航的文档页正文继续使用主题默认的 `950px` 最大宽度，宽屏下两侧空白偏多。
+
+修改前代码：
+
+```scss
+.home__grid {
+  grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr) minmax(12rem, 15rem);
+  gap: map-get($spacers, 4);
+}
+
+@include media-breakpoint-down(lg) {
+  .home__grid {
+    grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr);
+  }
+
+  .home__column--directory {
+    grid-column: 1 / -1;
+  }
+}
+```
+
+```scss
+.main {
+  max-width: map-get($layout, content-max-width);
+}
+```
+
+修改后：
+
+- 在 `_sass/layout/_home.scss` 顶部增加主页布局调节区，集中维护左右栏宽度、列间距、卡片内边距、头像尺寸和隐藏断点。
+- 主页在 `1180px ~ 1439px` 区间内平滑缩小左右栏、间距和卡片内容。
+- 视口小于 `1180px` 时先隐藏左侧个人简介；小于 `860px` 时再隐藏右侧合集目录；右侧目录不再移动到文章列表下方。
+- 在 `_sass/layout/_page.scss` 顶部增加文档页布局调节区，将正文最大宽度集中定义为 `1188px`，相比原本的 `950px` 扩大约 `25%`。
+- 文档页宽度调整只作用于带左侧合集导航的页面，不影响主页和普通页面。
+- 左侧合集导航、右侧文章目录和目录右侧留白也集中为变量，便于后续继续调节。
+
+修改后代码：
+
+```scss
+$home-profile-width-max: 14rem;
+$home-profile-width-min: 10rem;
+$home-directory-width-max: 15rem;
+$home-directory-width-min: 11rem;
+$home-hide-profile-at: 1180px;
+$home-hide-directory-at: 860px;
+```
+
+```scss
+@media (max-width: $home-hide-profile-at - 1) {
+  .home__column--profile {
+    display: none;
+  }
+}
+
+@media (max-width: $home-hide-directory-at - 1) {
+  .home__column--directory {
+    display: none;
+  }
+}
+```
+
+```scss
+$page-article-width: 1188px;
+$page-sidebar-width: 250px;
+$page-aside-width: clamp(15rem, 18vw, 18.75rem);
+$page-aside-right-gap: 1.25rem;
+```

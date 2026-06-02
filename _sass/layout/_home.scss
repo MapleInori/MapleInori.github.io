@@ -1,10 +1,37 @@
+// ===== 主页布局调节区 =====
+// 响应式规则：
+// >= 1440px：完整三栏。
+// 1180px ~ 1439px：保留三栏，左右侧栏、间距和卡片内容随视口逐步缩小。
+// 860px ~ 1179px：隐藏左侧个人简介，保留右侧文档目录。
+// < 860px：隐藏左右侧栏，只显示文章列表。
+//
+// 调整建议：
+// - 想让正文更早获得空间：调大隐藏断点。
+// - 想让侧栏在窄屏保留更久：调小隐藏断点或最小宽度。
+// - 想让页面更紧凑：调小列间距和卡片内边距。
+$home-profile-width-max: 14rem;
+$home-profile-width-min: 10rem;
+$home-directory-width-max: 15rem;
+$home-directory-width-min: 11rem;
+$home-column-gap-max: 1.5rem;
+$home-column-gap-min: .75rem;
+$home-card-padding-max: 1.5rem;
+$home-card-padding-min: 1rem;
+$home-avatar-size-max: 7rem;
+$home-avatar-size-min: 5.5rem;
+$home-hide-profile-at: 1180px;
+$home-hide-directory-at: 860px;
+
 .layout--home {
   margin-top: map-get($spacers, 4);
 
   .home__grid {
     display: grid;
-    grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr) minmax(12rem, 15rem);
-    gap: map-get($spacers, 4);
+    grid-template-columns:
+      minmax($home-profile-width-min, $home-profile-width-max)
+      minmax(0, 1fr)
+      minmax($home-directory-width-min, $home-directory-width-max);
+    gap: $home-column-gap-max;
     align-items: start;
   }
 
@@ -35,7 +62,7 @@
 
 .home-profile,
 .home-directory {
-  padding: map-get($spacers, 4);
+  padding: $home-card-padding-max;
   background:
     linear-gradient(180deg, rgba($main-color-1, .08), rgba($background-color, .98));
   border: 1px solid rgba($main-color-1, .12);
@@ -51,8 +78,8 @@
 }
 
 .home-profile__avatar {
-  width: 7rem;
-  height: 7rem;
+  width: $home-avatar-size-max;
+  height: $home-avatar-size-max;
   padding: map-get($spacers, 2);
   border-radius: 50%;
   background: rgba($background-color, .92);
@@ -147,28 +174,50 @@
   font-size: map-get($base, font-size-sm);
 }
 
-@include media-breakpoint-down(lg) {
+@media (max-width: 1439px) {
   .layout--home {
     .home__grid {
-      grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr);
+      grid-template-columns:
+        clamp($home-profile-width-min, calc(24vw - 7.5rem), $home-profile-width-max)
+        minmax(0, 1fr)
+        clamp($home-directory-width-min, calc(24vw - 6.5rem), $home-directory-width-max);
+      gap: clamp($home-column-gap-min, calc(4.5vw - 2.55rem), $home-column-gap-max);
+    }
+  }
+
+  .home-profile,
+  .home-directory {
+    padding: clamp($home-card-padding-min, calc(3vw - 1.2rem), $home-card-padding-max);
+  }
+
+  .home-profile__avatar {
+    width: clamp($home-avatar-size-min, calc(9vw - 1.1rem), $home-avatar-size-max);
+    height: clamp($home-avatar-size-min, calc(9vw - 1.1rem), $home-avatar-size-max);
+  }
+}
+
+@media (max-width: $home-hide-profile-at - 1) {
+  .layout--home {
+    .home__grid {
+      grid-template-columns:
+        minmax(0, 1fr)
+        minmax($home-directory-width-min, $home-directory-width-max);
     }
 
-    .home__column--directory {
-      grid-column: 1 / -1;
-      position: static;
+    .home__column--profile {
+      display: none;
     }
   }
 }
 
-@include media-breakpoint-down(md) {
+@media (max-width: $home-hide-directory-at - 1) {
   .layout--home {
     .home__grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
 
-    .home__column--profile,
     .home__column--directory {
-      position: static;
+      display: none;
     }
   }
 }

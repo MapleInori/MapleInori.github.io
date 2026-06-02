@@ -1,5 +1,13 @@
 # Change Log
 
+## 2026-06-02
+
+### Changed
+
+- Make the home three-column layout shrink progressively before hiding the left profile card below `1180px` and the right collection directory below `860px`
+- Centralize home layout tuning variables for side-column widths, spacing, card padding, avatar size, and responsive hide thresholds
+- Increase sidebar document article width from `950px` to `1188px` and centralize document layout width variables
+
 ## 2026-05-19
 
 ### Changed

@@ -1,6 +1,18 @@
-// 单篇文章右侧目录宽度：
-// 最小 15rem（240px），中间随视口宽度变化，最大 18.75rem（300px）。
-// 右侧额外预留一段间距，避免目录贴到浏览器最右边。
+// ===== 文档页布局调节区 =====
+// 宽屏结构：
+// 左侧合集导航 | 正文 | 右侧文章目录 | 目录右侧留白
+//
+// 响应式规则：
+// >= 1024px：显示左侧合集导航和右侧文章目录。
+// < 1024px：左侧合集导航改为按钮打开的抽屉，隐藏右侧文章目录。
+//
+// 调整建议：
+// - 正文太窄或两侧空白太多：调大 $page-article-width。
+// - 正文单行文字太长：调小 $page-article-width。
+// - 右侧目录太挤：调大 $page-aside-width。
+// - 目录距离浏览器右侧太远：调小 $page-aside-right-gap。
+$page-article-width: 1188px; // 原主题正文基准为 950px，扩大约 25%。
+$page-sidebar-width: 250px; // 左侧合集导航宽度。
 $page-aside-width: clamp(15rem, 18vw, 18.75rem);
 $page-aside-right-gap: 1.25rem;
 
@@ -88,7 +100,7 @@ html,
   z-index: map-get($z-indexes, sidebar);
   display: block;
   width: 80%;
-  max-width: map-get($layout, sidebar-width);
+  max-width: $page-sidebar-width;
   height: 100%;
   background-color: $background-color;
   @include split-line(right);
@@ -115,6 +127,21 @@ html,
   }
 }
 
+.layout--page--sidebar {
+  .main {
+    max-width: $page-article-width;
+  }
+
+  .has-aside {
+    .main {
+      max-width: calc(#{$page-article-width} + #{$page-aside-width} + #{$page-aside-right-gap});
+      @include media-breakpoint-down(lg) {
+        max-width: $page-article-width;
+      }
+    }
+  }
+}
+
 .has-aside {
   .col-aside {
     position: relative;
@@ -135,7 +162,7 @@ html,
 @include media-breakpoint-down(lg) {
   .page__sidebar {
     position: fixed;
-    @include transform(translate(- map-get($layout, sidebar-width), 0));
+    @include transform(translate(- $page-sidebar-width, 0));
   }
 
   .page__actions {
