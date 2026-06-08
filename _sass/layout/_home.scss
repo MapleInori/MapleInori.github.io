@@ -96,13 +96,11 @@ $home-hide-directory-at: 860px;
   text-transform: uppercase;
 }
 
-.home-profile__name,
-.home-directory__title {
+.home-profile__name {
   margin: 0 0 map-get($spacers, 2);
 }
 
-.home-profile__message,
-.home-directory__intro {
+.home-profile__message {
   margin: 0;
   color: $text-color-d;
   line-height: map-get($base, line-height-lg);

@@ -73,6 +73,12 @@ key: page-about
 
 [Unity就业课-Unity入门](https://www.bilibili.com/video/BV1SU4y1D7tP)，
 
+[Unity就业课-AB包 异步加载-热更新开发（一）](https://www.bilibili.com/video/BV1F3411w7hw)，
+
+[Unity3D就业课-Lua语言-热更新开发（二）](https://www.bilibili.com/video/BV1i94y117xh)，
+
+[Unity3D就业课-XLua语言-热更新开发（三）](https://www.bilibili.com/video/BV1JT411V7V1)，
+
 ## 案例教程
 
 [【Unity游戏开发：Flappy Bird (01)】](https://www.bilibili.com/video/BV1Dy4y1T7sf/) ,
