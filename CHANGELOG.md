@@ -1,5 +1,12 @@
 # Change Log
 
+## 2026-06-11
+
+### Fixed
+
+- Fix a Lua nested table example in the hot-update article so GitHub Pages no longer parses it as Liquid syntax
+- Document that fenced code blocks in posts are still scanned by Liquid and nested brace examples should be spaced or wrapped before publishing
+
 ## 2026-06-02
 
 ### Changed

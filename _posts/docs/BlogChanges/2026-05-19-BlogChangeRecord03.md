@@ -200,3 +200,26 @@ $page-sidebar-width: 250px;
 $page-aside-width: clamp(15rem, 18vw, 18.75rem);
 $page-aside-right-gap: 1.25rem;
 ```
+
+## 2026-06-11（修改 24）
+
+### 修复文章代码块触发 Liquid 解析的问题
+
+涉及文件：
+
+- `_posts/2026-06-01-热更新开发2.md`
+- `AGENTS.md`
+- `_posts/docs/BlogChanges/2026-05-19-BlogChangeRecord03.md`
+
+修改前：
+
+- `热更新开发2-Lua语言` 文章里的 Lua 二维表示例，外层 table 的左花括号后紧跟内层 table 的左花括号。
+- GitHub Pages 构建时会先解析 Liquid，再渲染 Markdown；即使内容位于 Markdown 代码块中，连续的模板变量起始符号仍可能被 Liquid 当成模板语法。
+- 构建因此在该文章处报 Liquid syntax error。
+- `AGENTS.md` 已记录说明文档里的 Liquid 兼容注意，但没有明确提醒 `_posts` 文章代码块同样会经过 Liquid 预处理。
+
+修改后：
+
+- 调整 Lua 示例写法，在外层 table 与内层 table 的左花括号之间加空格，Lua 语义不变。
+- 补充 `AGENTS.md` 规则：文章代码块同样要避开 Liquid 模板符号，Lua、Vue、Handlebars、Mustache 等示例如果出现连续模板符号，应加空格、拆开示例，或使用 `raw` / `endraw` 包裹。
+- 后续新增或修改文章时，遇到嵌套花括号示例要主动检查是否会被 GitHub Pages 的 Liquid 阶段提前解析。

@@ -25,6 +25,8 @@
 - 问题出现的具体情况是：GitHub Pages 会先解析 Liquid，再渲染 Markdown。只要这些符号出现在 `AGENTS.md`、项目修改记录、`CHANGELOG.md` 这类说明文档正文里，即使只是举例，也可能被当成真实模板语法执行，进而导致构建报错。
 - 因此在说明文档中记录这类问题时，一律使用中文名称描述，不再直接写出这些符号本身，也不要再用实体转义去拼写它们。
 - 如果必须在技术文档中展示真实 Liquid 代码，只能放进代码块，并在代码块外层使用 `raw` / `endraw` 包裹。
+- `_posts/` 文章正文里的代码块同样会被 GitHub Pages 先交给 Liquid 处理，不要因为内容在 Markdown 代码围栏里就认为它会跳过模板解析。Lua、Vue、Handlebars、Mustache 等示例如果出现连续两个左花括号，优先通过加空格、拆开示例或使用 `raw` / `endraw` 包裹来避免被解析。
+- Lua 二维表或嵌套 table 示例中，外层左花括号后紧跟内层左花括号时，要写成中间带空格的形式；这不改变 Lua 语义，但能避免 GitHub Pages 把它误认为 Liquid 变量起始。
 - 主题 SCSS 的 mixin 调用尽量沿用仓库现有写法；如果是 `transition` 这类主题封装过的 mixin，优先使用主题已经兼容的参数形式。
 - `_posts/image`、`_posts/2025Year/image` 与 `_posts/docs/UGUI/image` 已加入构建排除列表，不应依赖 Jekyll 在发布时复制这些目录下的图片。
 - 文章内相对图片路径 `image/...` 必须按 Markdown 源文件所在目录解析，不能按公开 URL 或 `permalink` 推断；带 `docs/Unity/...` permalink 的根层级文章仍应读取 `_posts/image/...`。
