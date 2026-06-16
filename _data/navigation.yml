@@ -158,7 +158,7 @@ docs-UGUI:     # UGUI的文档导航栏
 #endregion
 
 docs-Unity:
-  - title: Unity
+  - title: 综合性知识
     children:
       - title: 从零开始的Unity魔法学堂
         url:   docs/Unity/UnityMagicLesson
@@ -168,6 +168,12 @@ docs-Unity:
         url:   docs/Unity/HotUpdate1
       - title: 热更新开发2-Lua语言
         url:   docs/Unity/HotUpdate2
+      - title: 热更新开发3-xLua入门与Lua加载器
+        url:   docs/Unity/HotUpdate3
+      - title: 唐老师 Unity 程序基础框架
+        url:   docs/Unity/TangUnityFramework
+  - title: 功能实现与问题记录
+    children:
       - title: 安全区域
         url:   docs/Unity/SafeArea
       - title: 背包图标 Pivot 偏移与自适应缩放
