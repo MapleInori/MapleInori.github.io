@@ -7,7 +7,7 @@ permalink: docs/Unity/JsonUtilityAnonymousClass
 aside:
   toc: true
 sidebar:
-  nav: docs-Unity
+  nav: docs-learning-practice
 ---
 # JsonUtility 为什么不能直接转匿名类
 

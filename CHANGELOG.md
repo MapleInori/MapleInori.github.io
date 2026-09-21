@@ -1,5 +1,32 @@
 # Change Log
 
+## 2026-09-21
+
+### Added
+
+- Add paired “理论类问题” and “实践类问题” document sidebars with cross-category navigation and a new home-directory collection entry
+
+### Changed
+
+- Allow top-level document-sidebar items to link to another collection while preserving existing non-link section headings
+
+## 2026-08-19
+
+### Added
+
+- Add a Unity UI Systems section to the Unity collection navigation, with entries for the IMGUI and NGUI course notes
+- Add a C# collection with a `docs-CSharp` sidebar and a home-directory entry, plus C# course article stubs (intro/basic/core/advanced and four practice projects)
+- Add 21 Unity collection article stubs covering the remaining course topics (Unity basic/core, UGUI, FairyGUI, data persistence, networking, hot update, and electives)
+
+### Changed
+
+- Restructure the Unity collection navigation into course-themed groups and neutralize the framework navigation title
+- Split the hot-update series into a standalone editor-extension article and a unified 热更新开发-* series (AssetBundle, Lua, xLua, toLua, ab包上传和下载, ILRuntime)
+
+### Moved
+
+- Move the 勇者斗恶龙 and 飞行棋 C# console projects from the 2025 posts into the C# collection practice section
+
 ## 2026-06-11
 
 ### Fixed

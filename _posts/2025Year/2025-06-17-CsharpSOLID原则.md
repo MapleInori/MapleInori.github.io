@@ -6,6 +6,8 @@ key: 20250617
 permalink: CsharpSOLIDprinciple
 aside:
   toc: true
+sidebar:
+  nav: docs-learning-theory
 ---
 **SOLID原则**是面向对象设计中的五个基本原则，它们分别是
 

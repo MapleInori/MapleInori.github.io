@@ -59,9 +59,15 @@ home-directory:
       - title: UGUI
         url: /docs/UGUI/UnityUserInterface
         description: UGUI 学习与整理
+      - title: C#
+        url: /docs/CSharp/CSharpIntro
+        description: C# 学习路径与项目实践
       - title: Unity
         url: /docs/Unity/UnityMagicLesson
         description: Unity 学习路径、问题记录与阶段笔记
+      - title: 学习与开发问题
+        url: /CsharpSOLIDprinciple
+        description: 理论原理与开发实践问题整理
       - title: Blog 修改
         url: /docs/BlogChanges/ChangeRecord01
         description: 站点项目结构、样式与构建调整记录
@@ -157,25 +163,151 @@ docs-UGUI:     # UGUI的文档导航栏
 
 #endregion
 
+docs-learning-theory:
+  - title: 实践类问题
+    url: docs/LearningQuestions/Practice/DouyinMiniGameCamera
+  - title: 理论类问题
+    children:
+      - title: SOLID 原则
+        url: CsharpSOLIDprinciple
+      - title: 里氏转换原则示例
+        url: docs/LiskovSubstitutionPrinciple
+      - title: 值类型、引用类型与装箱拆箱
+        url: 20250711DataTypeInMemory
+      - title: 虚方法的重写与隐藏
+        url: docs/OverrideAndNewVirtualMethod
+      - title: C# 单例
+        url: docs/LearningQuestions/Theory/CSharpSingleton
+      - title: 浅讲状态机
+        url: docs/LearningQuestions/Theory/StateMachine
+      - title: Unity 序列化和反序列化
+        url: docs/Unity/UnitySerialization
+      - title: Play 模式下的场景为什么不会保存
+        url: docs/LearningQuestions/Theory/PlayModeScenePersistence
+
+docs-learning-practice:
+  - title: 理论类问题
+    url: CsharpSOLIDprinciple
+  - title: 实践类问题
+    children:
+      - title: 抖音小游戏相机渲染
+        url: docs/LearningQuestions/Practice/DouyinMiniGameCamera
+      - title: 检测屏幕上的点击是否在 UI 上
+        url: docs/Unity/CheckClickOnUI
+      - title: Unity 安全区域适配
+        url: docs/Unity/SafeArea
+      - title: Unity 2D 随机方向
+        url: docs/Unity/RandomDirection2D
+      - title: JsonUtility 无法转换匿名类
+        url: docs/Unity/JsonUtilityAnonymousClass
+      - title: Unity 小游戏压包
+        url: docs/LearningQuestions/Practice/UnityMiniGamePackageSize
+      - title: GitHub 大仓库含小仓库分离提交
+        url: docs/LearningQuestions/Practice/GitSubmoduleWorkflow
+      - title: TortoiseGit 安装配置
+        url: docs/LearningQuestions/Practice/TortoiseGitSetup
+
+docs-CSharp:
+  - title: C# 四部曲
+    children:
+      - title: C# 入门
+        url:   docs/CSharp/CSharpIntro
+      - title: C# 基础
+        url:   docs/CSharp/CSharpBasic
+      - title: C# 核心
+        url:   docs/CSharp/CSharpCore
+      - title: C# 进阶
+        url:   docs/CSharp/CSharpAdvanced
+  - title: 项目实践
+    children:
+      - title: 勇者斗恶龙
+        url:   docs/CSharp/DragonQuest
+      - title: 飞行棋
+        url:   docs/CSharp/FlightChess
+      - title: 贪吃蛇
+        url:   docs/CSharp/Snake
+      - title: 俄罗斯方块
+        url:   docs/CSharp/Tetris
+
 docs-Unity:
+  - title: Unity 三部曲
+    children:
+      - title: Unity 入门
+        url:   docs/Unity/GettingStarted
+      - title: Unity 基础
+        url:   docs/Unity/UnityBasic
+      - title: Unity 核心
+        url:   docs/Unity/UnityCore
+  - title: UI 系统
+    children:
+      - title: Unity UI 系统——IMGUI
+        url:   docs/Unity/IMGUI
+      - title: Unity UI 系统——NGUI
+        url:   docs/Unity/NGUI
+      - title: Unity UI 系统——UGUI
+        url:   docs/Unity/UGUI
+      - title: Unity UI 系统——FairyGUI
+        url:   docs/Unity/FairyGUI
+  - title: 数据持久化
+    children:
+      - title: PlayerPrefs
+        url:   docs/Unity/PlayerPrefs
+      - title: XML
+        url:   docs/Unity/XML
+      - title: Json
+        url:   docs/Unity/Json
+      - title: 二进制
+        url:   docs/Unity/Binary
+  - title: 网络开发
+    children:
+      - title: Unity 网络开发基础
+        url:   docs/Unity/Networking
+  - title: 编辑器扩展
+    children:
+      - title: Unity 编辑器扩展
+        url:   docs/Unity/EditorExtension
+  - title: 热更新
+    children:
+      - title: 热更新开发-AssetBundle
+        url:   docs/Unity/HotUpdateAssetBundle
+      - title: 热更新开发-Lua
+        url:   docs/Unity/HotUpdateLua
+      - title: 热更新开发-xLua
+        url:   docs/Unity/HotUpdateXLua
+      - title: 热更新开发-toLua
+        url:   docs/Unity/HotUpdateToLua
+      - title: 热更新开发-ab包上传和下载
+        url:   docs/Unity/HotUpdateABDownload
+      - title: 热更新开发-ILRuntime
+        url:   docs/Unity/HotUpdateILRuntime
+  - title: 选修与进阶
+    children:
+      - title: Shader 开发入门
+        url:   docs/Unity/ShaderIntro
+      - title: Addressables
+        url:   docs/Unity/Addressables
+      - title: Unity 进阶之 C# 知识补充
+        url:   docs/Unity/CSharpSupplement
+      - title: InputSystem
+        url:   docs/Unity/InputSystem
+      - title: ScriptableObject
+        url:   docs/Unity/ScriptableObject
+      - title: 视频播放
+        url:   docs/Unity/VideoPlayer
+      - title: 即时战略阵型功能
+        url:   docs/Unity/RTSFormation
+      - title: 移动平台相关
+        url:   docs/Unity/MobilePlatform
+      - title: MVC 思想（框架）
+        url:   docs/Unity/MVC
   - title: 综合性知识
     children:
       - title: 从零开始的Unity魔法学堂
         url:   docs/Unity/UnityMagicLesson
-      - title: Unity入门
-        url:   docs/Unity/GettingStarted
-      - title: 热更新开发1-Unity编辑器扩展与AssetBundle
-        url:   docs/Unity/HotUpdate1
-      - title: 热更新开发2-Lua语言
-        url:   docs/Unity/HotUpdate2
-      - title: 热更新开发3-xLua入门与Lua加载器
-        url:   docs/Unity/HotUpdate3
-      - title: 唐老师 Unity 程序基础框架
+      - title: Unity 程序基础框架
         url:   docs/Unity/TangUnityFramework
   - title: 功能实现与问题记录
     children:
-      - title: 安全区域
-        url:   docs/Unity/SafeArea
       - title: 背包图标 Pivot 偏移与自适应缩放
         url:   docs/Unity/InventoryIconPivot
       - title: 背包道具信息弹窗实现
